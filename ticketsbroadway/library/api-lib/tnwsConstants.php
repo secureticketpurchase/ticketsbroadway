@@ -2,7 +2,7 @@
 /*
 
 */
-if ( explode('.', $_SERVER['HTTPD_HOST'])[0] == "dev" ) {
+if ( explode('.', $_SERVER['HTTP_HOST'])[0] == "dev" ) {
 	DEFINE('WSDL', 'http://tnwebservices-test.ticketnetwork.com/TNWebService/v3.1/WSDL/tnwebservicestringinputs.xml');
 } else {
 	DEFINE('WSDL', 'http://tnwebservices.ticketnetwork.com/TNWebService/v3.2/WSDL/tnwebservicestringinputs.xml');
