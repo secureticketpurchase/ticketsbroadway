@@ -2,6 +2,9 @@ version: 0.0
 os: linux
 files:
     - source: ticketsbroadway
-      destination: /var/opt
+      destination: /var/www/html/wp-content/themes/ticketsbroadway
     - source: ticketsbroadway-mobile
-      destination: /var/opt
+      destination: /var/www/html/wp-content/themes/ticketsbroadway-mobile
+  hooks:
+    BeforeInstall:
+      - location: /var/opt/ready.sh
