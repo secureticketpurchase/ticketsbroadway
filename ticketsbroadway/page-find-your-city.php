@@ -102,7 +102,7 @@
 
 								<section class="entry-content cf" itemprop="articleBody" class="country-wrapper">
 									<div id="cities">
-										<h2>test</h2>
+									
 									</div>
 									<div>
 									<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -2109,7 +2109,9 @@
 										"post_type"		=> "city",
 										"meta_key"		=> "display_city",
 										"meta_value"	=> 1,
-										"posts_per_page"=> -1
+										"posts_per_page"=> -1,
+										"orderby"		=> 'title',
+										"order"			=> 'DESC'
 									);
 									$cities = get_posts( $args );
 
@@ -2121,7 +2123,7 @@
 											$states[] = $state;
 										}
 									}
-
+									sort($states);
 									foreach( $states as $state) {
 										$camelState = camelCase( $state );
 										echo "<div data-state='$camelState'>";

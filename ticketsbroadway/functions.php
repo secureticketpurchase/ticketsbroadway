@@ -1130,7 +1130,7 @@ function getShowResults() {
     }
   } elseif ( isset( $wpShowIDs ) ) {
     // only month filter is applied, use that
-    echo "here it is";
+    
     $showIDs = $wpShowIDs;
   }
 
