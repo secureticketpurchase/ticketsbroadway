@@ -2,6 +2,6 @@ version: 0.0
 os: linux
 files:
     - source: ticketsbroadway
-      destination: /var/opt
+      destination: /var/opt/main
     - source: ticketsbroadway-mobile
-      destination: /var/opt
+      destination: /var/opt/mobile
