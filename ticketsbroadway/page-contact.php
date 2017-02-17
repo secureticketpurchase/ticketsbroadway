@@ -45,7 +45,7 @@
 								</div>
 							</div>
 
-							<div id="post-<?php the_ID(); ?>" class="body-content d-5of7 t-2of3" <?php post_class( 'cf' ); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
+							<div id="post-<?php the_ID(); ?>" class="body-content contactuspage d-5of7 t-2of3" <?php post_class( 'cf' ); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
 								<header class="article-header">
 
