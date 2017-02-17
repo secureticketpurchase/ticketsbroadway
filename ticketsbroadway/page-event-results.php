@@ -31,38 +31,18 @@ get_header();
 
 						<h1>Search Results for: <?php echo $search; ?></h1>
 
+						<script type="text/javascript">var result;</script>
+
 						<?php
 
-						$client = new SoapClient( WSDL );
+						// Grab an array of categories from the {prefix}_categories table, spit out a javascript array
+						global $wpdb;
+						$table = $wpdb->prefix . "categories";
+						$catArray = $wpdb->get_results( "SELECT id, name FROM " . $table, OBJECT_K );
 
-						$params = array();
-						$params[ 'websiteConfigID' ] = WEB_CONF_ID;
-						$params[ 'searchTerms' ] = $search;
+						echo "<script>var catArray = " . json_encode( $catArray ) . ";</script>";
 
-						// account for no search term or a single result
-
-						$result = $client->__soapCall( 'SearchEvents', array( 'parameters' => $params ) );
-
-						if (is_soap_fault($result)) 
-				      	{
-				        	echo '<h2>Fault</h2><pre>';
-				         	print_r($result);
-				       		echo '</pre>';
-				      	}
-
-				      	// Grab an array of categories from the {prefix}_categories table, spit out a javascript array
-				      	global $wpdb;
-				      	$table = $wpdb->prefix . "categories";
-				      	$catArray = $wpdb->get_results( "SELECT id, name FROM " . $table, OBJECT_K );
-
-				      	echo "<script>var catArray = " . json_encode( $catArray ) . ";</script>";
-
-				      	// find something like handlebars to manipulate with javascript
-				      	// use Javascript "map" function to pop out arrays
-				      	echo "<script>var result = " . json_encode( $result->SearchEventsResult->Event ) . ";</script>";
-
-				      	//NOTE:
-				      	// while building out list of events to be displayed, populate arrays that will be used to populate filters
+						getEventResults();
 
 						?>
 
