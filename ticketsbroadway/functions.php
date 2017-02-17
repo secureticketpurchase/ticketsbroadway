@@ -1177,6 +1177,37 @@ function tb_register_query_vars( $vars ) {
 }
 add_filter( "query_vars", "tb_register_query_vars" );
 
+function getEventResults( ) {
+  $client = new SoapClient( WSDL );
+
+  $params = array();
+  $params[ 'websiteConfigID' ] = WEB_CONF_ID;
+  $params[ 'searchTerms' ] = get_query_var( 'tosearch', 'ca' );
+
+  // account for no search term or a single result
+
+  $result = $client->__soapCall( 'SearchEvents', array( 'parameters' => $params ) );
+
+  if (is_soap_fault($result))
+    {
+      echo '<h2>Fault</h2><pre>';
+      print_r($result);
+      echo '</pre>';
+    }
+
+    // find something like handlebars to manipulate with javascript
+    // use Javascript "map" function to pop out arrays
+    echo "<script>result = " . json_encode( $result->SearchEventsResult->Event ) . ";</script>";
+
+    return $result->SearchEventsResult->Event;
+}
+
+function printDat( $toPrint ) {
+  echo "<pre>";
+  print_r( $toPrint );
+  echo "</pre>";
+}
+
 
 function broadway_scripts(){
      //wp_enqueue_script('tb-js-script', get_template_directory_uri() . '/library/js/tb-scripts.js'); 
