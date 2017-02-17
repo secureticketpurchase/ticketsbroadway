@@ -27,13 +27,13 @@ get_header();
 
 					<div class="body-content d-6of7 t-2of3">
 
-						<?php $search = get_query_var( 'tosearch', 'ca' ); ?>
-
-						<h1>Search Results for: <?php echo $search; ?></h1>
+						<h1>Event Search Result Test Page</h1>
 
 						<?php
 
 						$client = new SoapClient( WSDL );
+
+						$search = get_query_var( 'tosearch', 'ca' );
 
 						$params = array();
 						$params[ 'websiteConfigID' ] = WEB_CONF_ID;
@@ -254,22 +254,6 @@ get_header();
 								}
 							}
 
-							// initial population of the filters to be manipulated
-							populateFilters( result );
-
-							// create array to hold original filters, to be used when resetting a single filter
-							var defaultFilters = {
-								Days: filters.Days,
-								Categories: filters.Categories,
-								Shows: filters.Shows,
-								Months: filters.Months,
-								Venues: filters.Venues,
-								Times: filters.Times,
-								Cities: filters.Cities,
-								Dates: filters.Dates,
-								Ranges: filters.Ranges
-							};
-
 						</script>
 
 						<div id="stache-holder"></div>
@@ -300,7 +284,7 @@ get_header();
 							Handlebars.registerHelper( "buildTicketURL", function( ticketID ) {
 								var getURL = window.location;
 								//var baseURL = getURL.protocol + "//" + getURL.host + "/" + getURL.pathname.split('/')[1];
-								var baseURL = "<?php echo site_url(); ?>";
+								var baseURL = "<?php echo get_template_directory_uri(); ?>";
 
 								var ticketURL = baseURL + "/tickets/?eventID=" + ticketID;
 
@@ -367,19 +351,37 @@ get_header();
 							var filterSource = $("#filter-template").html();
 							var filterTemplate = window.filterTemplate = Handlebars.compile(filterSource);
 
-
 							$("#stache-holder").append(template(
 											{
 												theResult:result,
 												theOffset:offset
 											}
 										));
-							$("#filter-holder").append(filterTemplate( {filters:filters} ) );
-							if ( filters.Ranges.length > 0 ) {
-								// register begin and end date pickers
-								$( addPickerListeners() );
-								$( doPagination(result) );
-							}
+							
+							jQuery(document).ready(function() {
+								// initial population of the filters to be manipulated
+								populateFilters( result );
+
+								// create array to hold original filters, to be used when resetting a single filter
+								var defaultFilters = {
+									Days: filters.Days,
+									Categories: filters.Categories,
+									Shows: filters.Shows,
+									Months: filters.Months,
+									Venues: filters.Venues,
+									Times: filters.Times,
+									Cities: filters.Cities,
+									Dates: filters.Dates,
+									Ranges: filters.Ranges
+								};
+
+								$("#filter-holder").append(filterTemplate( {filters:filters} ) );
+								if ( filters.Ranges.length > 0 ) {
+									// register begin and end date pickers
+									$( addPickerListeners() );
+									$( doPagination(result) );
+								}
+							});
 
 							
 						</script>
