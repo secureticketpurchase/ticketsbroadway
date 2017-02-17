@@ -254,22 +254,6 @@ get_header();
 								}
 							}
 
-							// initial population of the filters to be manipulated
-							populateFilters( result );
-
-							// create array to hold original filters, to be used when resetting a single filter
-							var defaultFilters = {
-								Days: filters.Days,
-								Categories: filters.Categories,
-								Shows: filters.Shows,
-								Months: filters.Months,
-								Venues: filters.Venues,
-								Times: filters.Times,
-								Cities: filters.Cities,
-								Dates: filters.Dates,
-								Ranges: filters.Ranges
-							};
-
 						</script>
 
 						<div id="stache-holder"></div>
@@ -373,6 +357,23 @@ get_header();
 												theOffset:offset
 											}
 										));
+							
+							// initial population of the filters to be manipulated
+							populateFilters( result );
+
+							// create array to hold original filters, to be used when resetting a single filter
+							var defaultFilters = {
+								Days: filters.Days,
+								Categories: filters.Categories,
+								Shows: filters.Shows,
+								Months: filters.Months,
+								Venues: filters.Venues,
+								Times: filters.Times,
+								Cities: filters.Cities,
+								Dates: filters.Dates,
+								Ranges: filters.Ranges
+							};
+
 							$("#filter-holder").append(filterTemplate( {filters:filters} ) );
 							if ( filters.Ranges.length > 0 ) {
 								// register begin and end date pickers
