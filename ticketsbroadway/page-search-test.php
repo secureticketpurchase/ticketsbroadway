@@ -367,14 +367,13 @@ get_header();
 							var filterSource = $("#filter-template").html();
 							var filterTemplate = window.filterTemplate = Handlebars.compile(filterSource);
 
-
-							$("#filter-holder").append(filterTemplate( {filters:filters} ) );
 							$("#stache-holder").append(template(
 											{
 												theResult:result,
 												theOffset:offset
 											}
 										));
+							$("#filter-holder").append(filterTemplate( {filters:filters} ) );
 							if ( filters.Ranges.length > 0 ) {
 								// register begin and end date pickers
 								$( addPickerListeners() );
