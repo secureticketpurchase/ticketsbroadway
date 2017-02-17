@@ -1,0 +1,77 @@
+    header{
+        background-color:#000000;
+        padding: 0 5px;
+        .above-nav{
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+            #logo{
+                margin:0px;
+                margin-right:auto;
+            }
+            &:after {
+                clear: both;
+                display: block;
+                height: 1px;
+                content: "";
+            }
+            #searchIcon{
+                padding: 7px 5px 0px 5px;
+            }
+        }
+        .mobile-top-nav{
+            padding-top:2px;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            -webkit-justify-content: flex-end;
+            -ms-flex-pack: end;
+            justify-content: flex-end;
+            -webkit-align-content: stretch;
+            -ms-flex-line-pack: stretch;
+            align-content: stretch;
+            -webkit-align-items: flex-start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            li{
+                padding:1px 5px;
+                a{
+                    color:#FFFFFF;
+                    text-decoration: none;
+                    padding-right:5px;
+                    border-right:1px solid #FFFFFF;
+                    font-size:.85em;
+                }
+            }
+        }
+    }
+.wrap{
+    width:100%;
+}
+#content{
+    margin-top:0;
+}
+#inner-content{
+    padding:0 5px;
+}

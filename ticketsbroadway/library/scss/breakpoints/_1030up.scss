@@ -1,0 +1,383 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Desktop Stylsheet
+
+This is the desktop size. It's larger than an iPad so it will only
+be seen on the Desktop.
+
+******************************************************************/
+
+.wrap {
+  width: 1040px;
+}
+
+.above-nav {
+	height: 110px;
+}
+
+#search-form {
+	
+	input {
+		width: 526px;
+	}
+
+	button {
+		width: 52px;
+	}
+}
+
+nav {
+	
+	li {
+		margin-right: 35px;
+	}
+}
+
+.nav {
+	margin-left: 6px;
+}
+
+.top-sellers-list {
+
+	& .top-seller-poster:nth-child(6n+0) {
+		margin-right: 0px;
+	}
+
+	.top-seller-poster {
+		margin-right: 35px;
+		margin-bottom: 35px;
+	}
+}
+
+.show-content {
+	padding: 0px 0px 0px 40px;
+	margin: 30px 0px 26px 0px;
+
+	section, h2 {
+		margin-left: 11px;
+	}
+
+}
+
+table#events-calendar {
+
+	.days-heading {
+		font-size: 16px;
+	}
+
+	.show-time {
+		font-size: 16px;
+	}
+}
+
+.cal-nav {
+	width: 180px;
+	font-size: 16px;
+
+	img {
+		height: 30px;
+	}
+
+	#date-range {
+		margin: auto 10px;
+		position: static;
+		height: 26px;
+	}
+}
+
+#month-selector {
+	width: 120px;
+	font-size: 16px;
+}
+
+#venue-selector {
+	width: auto;
+	padding-right: 25px;
+	margin-left: 20px;
+	font-size: 16px;
+}
+
+
+/****************
+FRONT PAGE STYLES
+****************/
+
+#beyond-buzz {
+
+	.headline-container {
+		height: 500px;
+	}
+	
+	.home-recent:first-of-type {
+
+		.recent-title {
+			font-size: 30px;
+		}
+	}
+
+	.home-recent {
+
+		.recent-title {
+			font-weight: 600;
+			font-size: 20px;
+		}
+
+		.recent-meta {
+			font-size: 14px;
+		}
+	}
+
+	.home-recent:last-of-type {
+	}
+}
+
+#home-page-slider {
+	height: 511px;
+
+	#gallery-block {
+		height: 500px;
+
+		.slide-gradient {
+			padding: 39px;
+		}
+
+		div.slide {
+			/*padding: 39px;*/
+
+			.show-info {
+
+				h3 {
+					font-size: 30px;
+				}
+
+				.filled-buy div {
+					border-radius: 20px;
+					padding: 5px;
+					width: 130px;
+				}
+			}
+		}
+	}
+
+	#slider-listing {
+		padding: 25px 0px 0px 30px;
+		height: 500px;
+
+		.show-listing {
+
+			img.dotted-arrow {
+				left: -50px;
+				top: 20px;
+				height: 60px;
+			}
+
+			.poster {
+				width: 30%;
+			}
+
+			.show-info {
+				width: 64%;
+
+				.buy-tickets {
+
+					div {
+						font-size: 15px;
+					}
+				}
+
+				.show-title a {
+					font-size: 18px;
+				}
+			}
+		}
+	}
+}
+
+#searchform {
+	
+	input {
+		width: 526px;
+		height: 47px;
+		margin: 0px 11px 0px 0px;
+	}
+
+	button {
+		width: 52px;
+	}
+}
+
+.search-results {
+	
+	article {
+		padding: 40px;
+	}
+
+	h3 {
+		font-size: 20px;
+		font-weight: bold;
+		max-width: 490px;
+	}
+
+	.thumbnail {
+		width: 200px;
+	}
+
+	.show-info {
+
+		ul li {
+			max-width: 490px;
+		}
+	}
+
+	.result-body {
+		max-width: 490px;
+	}
+}
+
+.show-headlines {
+	article.show-recent {
+		.content {
+			.recent-title{
+				max-width: 100%;
+			}
+		}
+	}
+}
+
+.show-list {
+
+	.show-list-item {
+		width: 167px;
+
+		.show-poster {
+
+			img {
+			}		
+		}
+
+		.show-title {
+			font-size: 18px;
+
+			a {
+				color: black;
+			}
+		}
+	}
+}
+
+.venue-map-holder {
+	width: 320px;
+	height: 320px;
+	float: left;
+	margin-right: 20px;
+
+	iframe {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.sidebar {
+	
+	.contact-faq {
+
+		a {
+			top: 17%;
+	    	font-size: 26px;
+		}
+	}
+}
+
+.state-list {
+	height: 555px;
+}
+
+.entry-content {
+	svg {
+		display: inline;
+	}
+}
+
+.blog {
+	
+	article {
+		@include flex();
+		@include flexDirection(row);
+
+		&:first-of-type {
+			@include flexDirection(column);
+
+			.preview-content {
+				margin-left: 0px;
+				max-width: 100%;
+			}
+
+			.thumbnail {
+				width: 100%;
+				height: 300px;
+				display: block;
+				overflow: hidden;
+
+				img {
+					max-width: 100%;
+					height: auto;
+					transform: translateY(-20%);
+				}
+			}
+		}
+
+		&:last-of-type {
+			border-bottom: 0px;
+			padding-bottom: 0px;
+		}
+
+		.thumbnail {
+			width: 300px;
+			height: 200px;
+			margin-top: 11px;
+
+			img {
+				width: inherit;
+				height: inherit;
+				object-fit: cover;
+			}
+		}
+
+		.preview-content {
+			@include flex();
+			@include flexDirection(column);
+			-webkit-justify-content: space-between;
+		    -ms-flex-pack: justify;
+		    justify-content: space-between;
+			margin-left: 15px;
+			max-width: 61%;
+
+			h2 {
+				margin-top: 5px;
+				line-height: 1em;
+				margin-bottom: 0px;
+
+				a {
+					color: black;
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+
+.footer-columns {
+	font-size: 18px;
+}
+
+.footer-top {
+
+	.wpcf7-form {
+
+	    .wpcf7-email {
+	    	width: 187px;
+	    }
+	}
+}

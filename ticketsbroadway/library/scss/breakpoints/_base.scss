@@ -1,0 +1,1422 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Base Mobile Stylesheet
+
+Be light and don't over style since everything here will be
+loaded by mobile devices. You want to keep it as minimal as
+possible. This is called at the top of the main stylsheet
+and will be used across all viewports.
+
+******************************************************************/
+
+/*********************
+GENERAL STYLES
+*********************/
+
+body {
+	font-family: $sans-serif;
+	font-size: 100%;
+	line-height: 1.5;
+	color: black;
+	background-color: $white;
+  	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+}
+
+/********************
+WORDPRESS BODY CLASSES
+style a page via class
+********************/
+
+.rtl {}                           /* for sites that are read right to left (i.e. hebrew) */
+.home {}                          /* home page */
+.blog {}                          /* blog template page */
+.archive {}                       /* archive page */
+.date {}                          /* date archive page */
+	.date-paged-1 {}                /* replace the number to the corresponding page number */
+.search {}                        /* search page */
+	.search-results {}              /* search result page */
+	.search-no-results {}           /* no results search page */
+	.search-paged-1 {}              /* individual paged search (i.e. body.search-paged-3) */
+.error404 {}                      /* 404 page */
+.single {}                        /* single post page */
+	.postid-1 {}                    /* individual post page by id (i.e. body.postid-73) */
+	.single-paged-1 {}              /* individual paged single (i.e. body.single-paged-3) */
+.attachment {}                    /* attatchment page */
+	.attachmentid-1 {}              /* individual attatchment page (i.e. body.attachmentid-763) */
+	.attachment-mime-type {}        /* style mime type pages */
+.author {}                        /* author page */
+	.author-nicename {}             /* user nicename (i.e. body.author-samueladams) */
+	.author-paged-1 {}              /* paged author archives (i.e. body.author-paged-4) for page 4 */
+.category {}                      /* category page */
+	.category-1 {}                  /* individual category page (i.e. body.category-6) */
+	.category-paged-1 {}            /* replace the number to the corresponding page number */
+.tag {}                           /* tag page */
+	.tag-slug {}                    /* individual tag page (i.e. body.tag-news) */
+	.tag-paged-1 {}                 /* replace the number to the corresponding page number */
+.page-template {}                 /* custom page template page */
+	.page-template-page-php {}      /* individual page template (i.e. body.page-template-contact-php */
+	.page-paged-1 {}                /* replace the number to the corresponding page number */
+	.page-parent {}                 /* parent page template */
+	.page-child {}                  /* child page template */
+	.parent-pageid-1 {}             /* replace the number to the corresponding page number */
+.logged-in {}                     /* if user is logged in */
+.paged {}                         /* paged items like search results or archives */
+	.paged-1 {}                     /* individual paged (i.e. body.paged-3) */
+
+/*********************
+LAYOUT & GRID STYLES
+*********************/
+
+.wrap {
+	width: 96%;
+	margin: 0 auto;
+}
+
+/*********************
+LINK STYLES
+*********************/
+
+a, a:visited {
+	
+
+	/* on hover */
+	&:hover, &:focus {
+		
+	}
+
+	/* on click */
+	&:active {
+
+	}
+
+	/* mobile tap color */
+	&:link {
+		/*
+		this highlights links on iPhones/iPads.
+		so it basically works like the :hover selector
+		for mobile devices.
+		*/
+		-webkit-tap-highlight-color : rgba( 0, 0, 0, 0.3 );
+	}
+}
+
+.show-list-item a {
+	text-decoration: none;
+}
+
+.buy-tickets {
+  border: 2px solid $yellow;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 5px auto;
+  color: $yellow;
+  font-weight: bold;
+  display: inline-block;
+}
+
+/******************************************************************
+H1, H2, H3, H4, H5 STYLES
+******************************************************************/
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+	text-rendering: optimizelegibility;
+	font-weight: 600;
+	/*
+	if you're going to use webfonts, be sure to check your weights
+	http://css-tricks.com/watch-your-font-weight/
+	*/
+
+	/* removing text decoration from all headline links */
+	a {
+		text-decoration: none;
+	}
+}
+
+h1, .h1 {
+	font-size: 30px;
+	text-transform: uppercase;
+	color: black;
+	font-weight: bold;
+}
+
+h2, .h2 {
+	font-size: 1.75em;
+	line-height: 1.4em;
+	margin-bottom: 0.375em;
+}
+
+h3, .h3 {
+	font-size: 1.125em;
+}
+
+.sidebar h3 {
+	margin-bottom: 40px;
+}
+
+h4, .h4 {
+	font-size: 1.1em;
+	font-weight: 700;
+}
+
+h5, .h5 {
+	font-size: 0.846em;
+	line-height: 2.09em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+/*********************
+HEADER STYLES
+*********************/
+
+.header {
+	background-color: $white;
+}
+
+	#logo {
+		margin: 0.75em 0;
+		float: left;
+
+		a {
+			color: $white;
+		}
+	}
+
+/*********************
+NAVIGATION STYLES
+*********************/
+
+/*
+all navs have a .nav class applied via
+the wp_menu function; this is so we can
+easily write one group of styles for
+the navs on the site so our css is cleaner
+and more scalable.
+*/
+
+nav {
+	background-color: $black;
+	@include flex();
+	-webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+
+	.top-social {
+		float: right;
+		position: relative;
+		top: -6px;
+
+		a {
+			display: inline;
+			height: 48px;
+
+			img {
+				height: inherit;
+				width: auto;
+			}
+		}
+
+		a.youtube-icon {
+			margin-right: 14px;
+
+			img {
+				height: 35px;
+				width: 35px;
+			}
+		}
+	}
+}
+
+.nav {
+	border-bottom: 0;
+	margin: 0;
+
+	li {
+
+		a {
+			display: block;
+			color: $white;
+			text-decoration: none;
+			padding: 0.75em 0.5em;
+			font-weight: 500;
+
+			/*
+			remember this is for mobile ONLY, so there's no need
+			to even declare hover styles here, you can do it in
+			the style.scss file where it's relevant. We want to
+			keep this file as small as possible!
+			*/
+			&:hover, &:focus {
+
+			}
+		}
+
+		&:first-child {}
+
+		&:last-child {}
+
+		/*
+		so you really have to rethink your dropdowns for mobile.
+		you don't want to have it expand too much because the
+		screen is so small. How you manage your menu should
+		depend on the project. Here's some great info on it:
+		http://www.alistapart.com/articles/organizing-mobile/
+		*/
+		ul.sub-menu,
+		ul.children {
+
+			li {
+
+				a {
+					padding-left: 30px;
+
+					&:hover,
+					&:focus {}
+
+					&:link {}
+
+				}
+
+				&:first-child {}
+
+				&:last-child {}
+
+			}
+
+		}
+
+	} /* end .menu li */
+
+	/* highlight current page */
+	li.current-menu-item,
+	li.current_page_item,
+	li.current_page_ancestor {
+
+		a {}
+
+	}  /* end current highlighters */
+
+} /* end .nav */
+
+
+/****************
+FRONT PAGE STYLES
+****************/
+
+
+
+/*********************
+POSTS & CONTENT STYLES
+*********************/
+
+#content {
+	margin-top: 0.2em;
+}
+
+section {
+	
+}
+
+.body-content {
+	padding-left: 40px;
+}
+
+#inner-content {
+	@include flex();
+}
+
+.home #inner-content {
+	display: block;
+}
+
+.show-content {
+
+	h2 {
+		margin-top: 0px;
+	}
+}
+
+.venue-notes {
+
+	h3 {
+		font-weight: bold;
+		font-size: 25px;
+		margin-bottom: 10px;
+	}
+	
+	ul {
+		width: 50%;
+		float: left;
+
+		h4 {
+			font-weight: 600;
+			font-size: 18px;
+			margin: 0px;
+		}
+	}
+}
+
+.theater-thumb {
+	float: left;
+	margin-right: 20px;
+}
+
+.single-cast article {
+	width: 100%;
+}
+
+.actor-image {
+	float: left;
+	width: 150px;
+	height: auto;
+	margin-right: 20px;
+}
+
+.show-nav {
+	@include flex();
+	background-color: black;
+	text-transform: uppercase;
+	border-bottom: 2px solid #bbbbbb;
+
+	li {
+		margin: 10px 50px 10px 10px;
+	}
+
+	a {
+		text-decoration: none;
+		font-weight: bold;
+		font-size: 18px;
+		color: #b3b3b3;
+	}
+
+	.active {
+		color: $yellow;
+		border-color: $yellow;
+		border-bottom: 4px solid;
+		padding-bottom: 13px;
+	}
+}
+
+.cast-list, .crew-list {
+	width: 50%;
+	float: left;
+	padding-bottom: 20px;
+
+	.person {
+		margin: 7px 0px;
+		letter-spacing: 1px;
+
+		a {
+			text-decoration: underline;
+			color: $yellow;
+		}
+	}
+
+	.character-name, .role-name {
+		font-weight: bold;
+	}
+
+	h3 {
+		font-size: 22px;
+		font-weight: 600;
+	}
+}
+
+.cast-list {
+	padding-right: 10px;
+	border-right: 1px solid black;
+}
+
+.crew-list {
+	padding-left: 10px;
+}
+
+.crew-name, .actor-name {
+	float: right;
+}
+
+.placeholder {
+	width: 150px;
+	height: auto;
+}
+
+.theater-display {
+	clear: both;
+
+	h4 {
+		font-weight: 600;
+		color: black;
+
+		a {
+			color: black;
+			text-decoration: underline;
+		}
+	}
+}
+
+.event-list {
+	h3 {
+		font-size: 33px;
+	}
+	
+	select {
+		float: right;
+	}
+}
+
+#month-selector {
+	width: 100px;
+}
+
+#venue-selector {
+	width: auto;
+	padding-right: 25px;
+	margin-left: 20px;
+}
+
+.cal-nav {
+	@include flex();
+	
+	img {
+		width: auto;
+	}
+
+	#next-week-btn img {
+		transform:          rotate(180deg);
+		-ms-transform:      rotate(180deg);
+		-moz-transform:     rotate(180deg);
+		-webkit-transform:  rotate(180deg);
+		-o-transform:       rotate(180deg);
+	}
+}
+
+.single-city .body-content {
+	
+	h3 {
+		font-size: 22px;
+		font-weight: bold;
+		margin-top: 0px;
+		text-align: center;
+	}
+
+	.theater-thumb a {
+		width: 150px;
+
+		img {
+			width: inherit;
+			height: auto;
+		}
+	}
+
+	.theater-display {
+		.theater-data {
+			h4 {
+				text-decoration: none;
+				font-size: 26px;
+
+				a {
+					color: black;
+				}
+			}
+		}
+	}
+}
+
+.show-list {
+
+	#next-shows-btn, #prev-shows-btn {
+		position: relative;
+		top: 27px;
+	}
+	
+	#next-shows-btn img {
+		transform:          rotate(180deg);
+		-ms-transform:      rotate(180deg);
+		-moz-transform:     rotate(180deg);
+		-webkit-transform:  rotate(180deg);
+		-o-transform:       rotate(180deg);
+	}
+}
+
+table#events-calendar {
+	width: 100%;
+	text-align: center;
+
+	.days-heading {
+		background-color: black;
+		color: #b3b3b3;
+		text-transform: uppercase;
+		font-weight: 600;
+	}
+
+	tr {
+		background-color: #eee;
+		vertical-align: top;
+	}
+
+	td {
+		border-left: white 1px solid;
+	}
+
+	td:first-child {
+		border-left: none;
+	}
+
+	.show-time {
+		width: 85%;
+		border: $yellow solid;
+		border-radius: 20px;
+		display: block;
+		margin: 15px auto;
+		font-weight: bold;
+		color: black;
+		text-decoration: none;
+	}
+}
+
+.show-search-form {
+	position: relative;
+	top: 23px;
+	@include flex();
+
+	button {
+		padding: 0px;
+		border: 0px;
+		margin: 0px 0px 0px 10px;
+		height: 40px;
+
+		img {
+			height: 100%;
+			width: auto;
+		}
+	}
+}
+
+.find-a-show {
+	
+	.article-header, .show-search-form {
+		margin-left: 40px;
+	}
+
+	h2 {
+		clear: both;
+		margin-left: 40px;
+	}
+
+	.sidebar {
+		background-color: white;
+		border-right: darkgray 1px solid;
+
+		h4 {
+			font-weight: bold;
+			color: black;
+		}
+
+		.month-filter li {
+			cursor: pointer;
+			color: black;
+			font-weight: 600;
+			font-size: 18px;
+
+			&:before {
+				content: url(../assets/icons/star.png);
+				margin-right: 5px;
+				position: relative;
+				top: 1px;
+			}
+
+			&.active:before {
+				content: url(../assets/icons/star-black.png);
+			}
+		}
+
+		.genre-filter li {
+			text-decoration: none;
+			font-weight: 600;
+			font-size: 18px;
+			color: #444444;
+			cursor: pointer;
+			padding-left: 8px;
+
+			&.active {
+				background-color: $yellow;
+			}
+		}
+	}
+}
+
+.show-info {
+	h4 {
+		margin: 5px 0px;
+	}
+
+	ul li {
+		max-width: 490px;
+
+		a {
+			color: #666666;
+			font-size: 20px;
+		}
+	}
+}
+
+.single-venue {
+	
+	.venue-show-list {
+		clear: both;
+
+		h2 {
+			text-align: center;
+		}
+	}
+
+	.venue-map-holder {
+
+		iframe {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+.search-results {
+
+	article {
+		height: auto;
+		padding: 40px;
+		clear: both;
+		border: none;
+
+		section {
+			padding: 1.5em;
+		}
+	}
+
+	header.entry-header {
+		padding: 0px;
+	}
+
+	.result-body {
+		float: left;
+		margin-left: 20px;
+
+		.entry-meta{
+
+			p {
+				margin-bottom: 5px;
+				margin-top: 5px;
+			}
+		}
+	}
+
+	.show-info {
+		h4 {
+			margin: 5px 0px;
+		}
+
+		ul li {
+			max-width: 490px;
+
+			a {
+				color: #666666;
+				font-size: 20px;
+			}
+		}
+	}
+
+	.buy-tickets {
+		text-decoration: none;
+
+		div {
+			text-transform: none;
+		}
+	}
+	
+	main {
+		width: 100%;
+	}
+
+	h3 {
+		font-size: 20px;
+		font-weight: bold;
+		
+		a {
+			text-decoration: none;
+			color: black;
+		}
+	}
+
+	.thumbnail {
+		float: left;
+
+		img {
+			width: inherit;
+			height: auto;
+			margin-bottom: 0px;
+		}
+	}
+}
+
+#inner-content {
+	main {
+		width: inherit;
+	}
+}
+
+.entry-content {
+	svg {
+		display: none;
+	}
+}
+
+.state-list {
+	@include flex();
+	@include flexDirection(column);
+	@include flexWrap(wrap);
+	-webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-content: space-around;
+    -ms-flex-line-pack: distribute;
+    align-content: space-around;
+    
+	width: inherit;
+	height: 1330px;
+	margin-bottom: 40px;
+
+	.state-header {
+		margin-bottom: 0px;
+	}
+
+	ul {
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+
+	a {
+		color: $yellow;
+		text-decoration: none;
+		font-weight: bold;
+	}
+}
+
+
+/**********
+BLOG STYLES
+**********/
+
+.single-post a, .blog a, .archive a {
+	color: #666666;
+}
+
+.archive article {
+	border-bottom: 1px solid gray;
+}
+
+article.second-article {
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.blog article.half-width {
+    width: 50%;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+}
+
+.blog .article-header {
+    padding-bottom: 10px;
+    position: relative;
+    top: -5px;
+}
+
+.blog hr {
+	clear: both;
+}
+
+/* Blog article social icons */
+article .social-icons img {
+    position: relative;
+    top: 7px;
+    height: 32px;
+    width: auto;
+}
+
+article h2 a, article h1 a {
+	font-size: 22px;
+}
+
+article h1 {
+	margin-bottom: 0px;
+}
+
+/* Blog Read More button styling */
+.blog-sidebar h3, .nav-single a {
+    background-color: #fab512;
+    padding: 5px;
+}
+
+/* Blog Sidebar */
+.blog-sidebar img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.blog-sidebar h3 {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 20px 0px;
+    text-align: center;
+    color: black;
+}
+
+.blog-sidebar .widget_categories li {
+    margin: 10px 0px;
+    font-size: 17px;
+}
+
+.blog-sidebar label {
+	display: none;
+}
+
+.contact-form {
+	
+	.wpcf7-submit {
+		background-color: $yellow;
+		color: #FFFFFF;
+		font-style: normal;
+		border: none;
+		width: 20%;
+		height: 30px;
+		border-radius: 20px;
+	}
+}
+
+.event-result {
+	
+	table#events-results-table {
+		width: 100%;
+		tr{
+			&:nth-child(even) {
+				background: #CCC;
+			}
+			&:nth-child(odd) {
+				background: #FFF;
+			}
+		}
+		tr#header {
+			background-color: black;
+			color: white;
+		}
+
+		tr.event-entry {
+			/*border: solid black 1px;*/
+			
+			vertical-align: top;
+			td{
+				padding:5px;
+				&.date{
+					padding-left:25px;
+					position:relative;
+					&:before{
+						content:url('../assets/icons/date-icon.png');
+						position:absolute;
+						left:2px;
+					}
+				}
+				&.show-title{
+					font-weight: 700;
+				}
+				&.location{
+					padding-left:25px;
+					position:relative;
+					&:before{
+						content:url('../assets/icons/location-icon.png');
+						position:absolute;
+						left:2px;
+					}
+					span{
+						font-weight: 700;
+					}
+				}
+				
+				.buy-tickets{
+					text-decoration: none;
+    				padding: 0px 10px;
+				}
+			}
+		}
+	}
+}
+
+		.hentry {
+			background-color: $white;
+
+			header {
+				border-bottom: 1px solid $light-gray;
+				padding-bottom: 1.5em;
+			}
+
+			footer {
+				padding: 1.5em;
+
+				p {
+					margin: 0;
+				}
+			}
+
+		} /* end .hentry */
+
+		.single-title,
+		.page-title,
+		.entry-title {
+			margin: 0;
+		}
+
+		.single-title {}
+
+		.page-title {}
+
+		.entry-title {}
+
+		.archive-title {}
+
+		/* want to style individual post classes? Booya! */
+		.post-id {}         /* post by id (i.e. post-3) */
+		.post {}            /* general post style */
+		.page {}            /* general article on a page style */
+		.attachment {}      /* general style on an attatchment */
+		.sticky {}          /* sticky post style */
+		.hentry {}          /* hentry class */
+		.category-slug {}   /* style by category (i.e. category-videos) */
+		.tag-slug {}        /* style by tag (i.e. tag-news) */
+
+		/* post meta */
+		.byline {
+			color: $meta-gray;
+			font-style: italic;
+			margin: 0;
+
+			time {}
+		}
+
+		/* entry content */
+		.entry-content {
+
+			p {
+				margin: 0 0 1.5em;
+			}
+
+
+			ul, ol, table, dl {}
+
+			ul, ol {
+
+				li {}
+
+			}
+
+			ul {
+
+				li {}
+
+			}
+
+			ol {
+
+				li {}
+
+			}
+
+			table {
+				width: 100%;
+				border: 1px solid $gray;
+				margin-bottom: 1.5em;
+
+				caption {
+					margin: 0 0 7px;
+					font-size: 0.75em;
+					color: $meta-gray;
+					text-transform: uppercase;
+					letter-spacing: 1px;
+				}
+			}
+
+			tr {
+				border-bottom: 1px solid $gray;
+
+				&:nth-child(even) {
+					background-color: $light-gray;
+				}
+			}
+
+			td {
+				padding: 7px;
+				border-right: 1px solid $gray;
+
+				&:last-child {
+					border-right: 0;
+				}
+			}
+
+			th {
+				background-color: $light-gray;
+				border-bottom: 1px solid $gray;
+				border-right: 1px solid $gray;
+
+				&:last-child {
+					border-right: 0;
+				}
+			}
+
+			blockquote {
+				margin: 0 0 1.5em 0.75em;
+				padding: 0 0 0 0.75em;
+				border-left: 3px solid $blue;
+				font-style: italic;
+				color: $meta-gray;
+
+				&:before {}
+
+			}
+
+			dl {}
+
+			dt {}
+
+			dd {
+				margin-left: 0;
+				font-size: 0.9em;
+				color: #787878;
+				margin-bottom: 1.5em;
+			}
+
+			img {
+				margin: 0 0 1.5em 0;
+				max-width: 100%;
+				height: auto;
+			}
+
+			/*
+			image alignment on a screen this size may be
+			a bit difficult. It's set to start aligning
+			and floating images at the next breakpoint,
+			but it's up to you. Feel free to change it up.
+			*/
+			.alignleft, img.alignleft {}
+			.alignright, img.alignright {}
+			.aligncenter, img.aligncenter {}
+
+			.size-auto,
+			.size-full,
+			.size-large,
+			.size-medium,
+			.size-thumbnail {
+				max-width: 100%;
+				height: auto;
+			}
+
+			pre {
+				background: $black;
+				color: $light-gray;
+				font-size: 0.9em;
+				padding: 1.5em;
+				margin: 0 0 1.5em;
+				border-radius: 3px;
+			}
+
+		} /* end .entry-content */
+
+		.wp-caption {
+			max-width: 100%;
+			background: #eee;
+			padding: 5px;
+
+			/* images inside wp-caption */
+			img {
+				max-width: 100%;
+				margin-bottom: 0;
+				width: 100%;
+			}
+
+			p.wp-caption-text {
+				font-size: 0.85em;
+				margin: 4px 0 7px;
+				text-align: center;
+			}
+
+		} /* end .wp-caption */
+
+		/* image gallery styles */
+		.gallery {
+
+			dl {
+
+				a {}
+
+				img {}
+
+			}
+
+			dt {}
+
+			dd {}
+
+		} /* end .gallery */
+
+		/* gallery caption styles */
+		.gallery-caption {}
+
+		.size-full {}
+		.size-large {}
+		.size-medium {}
+		.size-thumbnail {}
+
+	// the tag output
+	.tags {
+		margin: 0;
+	}
+
+/******************************************************************
+PAGE NAVI STYLES
+******************************************************************/
+
+.pagination,
+.wp-prev-next {
+	margin: 1.5em 0;
+}
+	.pagination{
+    text-align: center;
+    clear: both;
+    height: auto;
+
+    ul {
+      display: inline-block;
+      background-color: $white;
+      white-space: nowrap;
+      padding: 0;
+      clear: both;
+      border-radius: 3px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    li {
+      padding: 0;
+      margin: 0;
+      float: left;
+      display: inline;
+      overflow: hidden;
+      border-right: 1px solid $gray;
+    }
+
+    a, span {
+      margin: 0;
+      text-decoration: none;
+      padding: 0;
+      line-height: 1em;
+      font-size: 1em;
+      font-weight: normal;
+      padding: 0.75em;
+      min-width: 1em;
+      display: block;
+      color: $blue;
+
+      &:hover, &:focus {
+      	background-color: $blue;
+      	color: $white;
+      }
+    }
+
+    .current{
+    	cursor: default;
+    	color: $text-color;
+
+    	&:hover, &:focus {
+    		background-color: $white;
+    		color: $text-color;
+    	}
+    }
+
+  } /* end .bones_page_navi */
+
+	/* fallback previous & next links */
+	.wp-prev-next {
+
+		ul {}
+
+		.prev-link {
+			float: left;
+		}
+
+		.next-link {
+			float: right;
+		}
+
+	} /* end .wp-prev-next */
+
+/*********************
+SIDEBARS & ASIDES
+*********************/
+
+.sidebar {
+	display: none;
+}
+
+/*********************
+FOOTER STYLES
+*********************/
+
+.footer {
+	clear: both;
+	color: $light-gray;
+
+}
+
+.footer-top {
+	background-color: $yellow;
+	height: 48px;
+	@include flex();
+	-webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+
+	.wpcf7-form {
+	    @include flex();
+	    height: 48px;
+	    -webkit-align-items: center;
+	    -ms-flex-align: center;
+	    align-items: center;
+
+	    .wpcf7-email {
+	    	width: 140px;
+	    }
+
+	    .newsletter-submit {
+	    	height: 48px;
+		    background-color: #faa61a;
+		    border: 0px;
+	    }
+
+	    input {
+	    	margin: 0px;
+	    }
+
+	    p {
+			float: left;
+			margin: 0px;
+		}
+	}
+}
+
+.footer-social {
+	@include flex();
+	-webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+	padding-top: 6px;
+
+	a {
+		margin-left: 26px;
+	}
+}
+
+#inner-footer {
+	background-color: $black;
+	padding: 26px;
+
+	.footer-logo {
+		width: 25%;
+	}
+}
+
+.footer-columns {
+	@include flex();
+	@include flexDirection(row);
+	-webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+
+	.footer-column-header {
+		font-weight: bold;
+		border-bottom: $yellow 1px solid;
+		padding-bottom: 20px;
+		margin-bottom: 10px;
+		line-height: 1;
+	}
+
+	.column {
+		-webkit-flex: 0 1 25%;
+	    -ms-flex: 0 1 25%;
+	    flex: 0 1 25%;
+		margin: 0px 15px;
+
+		&:last-child {
+			margin-right: 0px;
+		}
+
+		&:first-child {
+			margin-left: 0px;
+		}
+	}
+
+	.about-block {
+		ul {
+
+			li:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+
+	ul {
+		margin: 10px 0px 0px 0px;
+	}
+
+	li {
+		border-bottom: 1px grey solid;
+
+		a {
+			padding-left: 10px;
+			position: relative;
+    		top: -3px;
+    		line-height: 2;
+    		color: #b3b3b3;
+    		text-decoration: none;
+		}
+	}
+
+	li::before {
+		content: url(../assets/icons/small-arrow.png);
+	}
+}
+
+
+	/*
+	if you checked out the link above:
+	http://www.alistapart.com/articles/organizing-mobile/
+	you'll want to style the footer nav
+	a bit more in-depth. Remember to keep
+	it simple because you'll have to
+	override these styles for the desktop
+	view.
+	*/
+	.footer-links {
+
+		ul {
+
+			li {}
+
+		}
+
+	} /* end .footer-links */
+
+
+	.copyright {}

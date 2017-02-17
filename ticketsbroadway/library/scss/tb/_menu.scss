@@ -1,0 +1,86 @@
+.drop-down-shows{
+    position: absolute;
+    background-color: #000000;
+    z-index: 10;
+    top: 52px;
+    left: 0px;
+    display:none;
+    width:677px;
+    height:370px;
+    padding:5px 15px;
+    .ul-genre-list{
+        width:215px;
+        float:left;
+        ul{
+            li{
+                margin-right:0px;
+                a{
+                    color:#FFFFFF;
+                    text-decoration:none;
+                    &:hover{
+                        color:$yellow;
+                    }
+                    &.active{
+                        color:$yellow;
+                    }
+                }
+            }
+        }
+    }
+    .genre-show-list{
+        display:none;
+        float:right;
+        padding:35px 0px;
+        &:first-child{
+            display:block;
+        }
+        &:after{
+            clear:both;
+            display:block;
+            content:"";
+            height:1px;
+        }
+        .single-show{
+            display:inline-block;
+            width:107px;
+            height:137px;
+            float:left;
+            padding:4px;
+            &:nth-child(5){
+                clear:both;
+            }
+            a{
+                img{
+                    
+                }
+            }
+        }
+    }
+}
+
+.drop-down-cities {
+    position: absolute;
+    background-color: black;
+    z-index: 10;
+    top: 52px;
+    left: 138px;
+    padding: 20px;
+    display: none;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: 240px;
+        width: 690px;
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: $yellow;
+        }
+    }
+}

@@ -1,0 +1,57 @@
+body.mobile{
+    .flip{
+         -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            filter: FlipH;
+            -ms-filter: "FlipH";
+    }
+    .flip-up{
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    }
+    img{
+        width:100%;
+        height:auto;
+    }
+    .header-style{
+            margin-top: 0px;
+    margin-bottom: 0px;
+    color: #FAA61A;
+    background-color: #000000;
+    font-size: 18px;
+    text-align: center;
+    border-radius-t: b;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 5px;
+    }
+    @import "partials/variables";
+    
+    @import "partials/mixins";
+    .buy-tickets{
+       text-decoration:none;
+        text-transform: uppercase;
+        font-size:13px;
+    }
+    
+    @import "mobile/header";
+    
+    @import "mobile/front";
+    
+    @import "mobile/show";
+    
+    @import "mobile/blog";
+    
+    @import "mobile/archive";
+    
+    @import "mobile/venue";
+    
+    @import "mobile/events";
+    
+    @import "mobile/footer";
+}
