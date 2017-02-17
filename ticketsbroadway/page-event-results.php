@@ -27,13 +27,13 @@ get_header();
 
 					<div class="body-content d-6of7 t-2of3">
 
-						<h1>Event Search Result Test Page</h1>
+						<?php $search = get_query_var( 'tosearch', 'ca' ); ?>
+
+						<h1>Search Results for: <?php echo $search; ?></h1>
 
 						<?php
 
 						$client = new SoapClient( WSDL );
-
-						$search = get_query_var( 'tosearch', 'ca' );
 
 						$params = array();
 						$params[ 'websiteConfigID' ] = WEB_CONF_ID;
@@ -254,6 +254,26 @@ get_header();
 								}
 							}
 
+							jQuery(document).ready(function() {
+								// initial population of the filters to be manipulated
+								populateFilters( result );
+
+								// create array to hold original filters, to be used when resetting a single filter
+								var defaultFilters = {
+									Days: filters.Days,
+									Categories: filters.Categories,
+									Shows: filters.Shows,
+									Months: filters.Months,
+									Venues: filters.Venues,
+									Times: filters.Times,
+									Cities: filters.Cities,
+									Dates: filters.Dates,
+									Ranges: filters.Ranges
+								};
+
+								$("#filter-holder").append(filterTemplate( {filters:filters} ) );
+							});
+
 						</script>
 
 						<div id="stache-holder"></div>
@@ -351,37 +371,18 @@ get_header();
 							var filterSource = $("#filter-template").html();
 							var filterTemplate = window.filterTemplate = Handlebars.compile(filterSource);
 
+
 							$("#stache-holder").append(template(
 											{
 												theResult:result,
 												theOffset:offset
 											}
 										));
-							
-							jQuery(document).ready(function() {
-								// initial population of the filters to be manipulated
-								populateFilters( result );
-
-								// create array to hold original filters, to be used when resetting a single filter
-								var defaultFilters = {
-									Days: filters.Days,
-									Categories: filters.Categories,
-									Shows: filters.Shows,
-									Months: filters.Months,
-									Venues: filters.Venues,
-									Times: filters.Times,
-									Cities: filters.Cities,
-									Dates: filters.Dates,
-									Ranges: filters.Ranges
-								};
-
-								$("#filter-holder").append(filterTemplate( {filters:filters} ) );
-								if ( filters.Ranges.length > 0 ) {
-									// register begin and end date pickers
-									$( addPickerListeners() );
-									$( doPagination(result) );
-								}
-							});
+							if ( filters.Ranges.length > 0 ) {
+								// register begin and end date pickers
+								$( addPickerListeners() );
+								$( doPagination(result) );
+							}
 
 							
 						</script>
