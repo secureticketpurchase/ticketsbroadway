@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+files:
+    - source: ticketsbroadway
+      destination: /var/www/html/wp-content/themes/ticketsbroadway
+    - source: ticketsbroadway-mobile
+      destination: /var/www/html/wp-content/themes/ticketsbroadway-mobile
+hooks:
+  BeforeInstall:
+    - location: scripts/beforeinstall.sh
+      timeout: 3600
+  AfterInstall:
+    - location: scripts/afterinstall.sh
+      timeout: 3600

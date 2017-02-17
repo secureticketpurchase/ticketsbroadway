@@ -279,7 +279,7 @@ get_header();
 							// pagination helper
 							Handlebars.registerHelper( "numResults", function( arrEvents, offset ) {
 								offset = offset === undefined ? 0 : offset;
-								//return arrEvents.length == 0 ? null : arrEvents.slice(offset, offset + 3);
+								return arrEvents.length == 0 ? null : arrEvents.slice(offset, offset + 25);
 								return arrEvents;
 							} );
 
@@ -299,7 +299,8 @@ get_header();
 							
 							Handlebars.registerHelper( "buildTicketURL", function( ticketID ) {
 								var getURL = window.location;
-								var baseURL = getURL.protocol + "//" + getURL.host + "/" + getURL.pathname.split('/')[1];
+								//var baseURL = getURL.protocol + "//" + getURL.host + "/" + getURL.pathname.split('/')[1];
+								var baseURL = "<?php echo site_url(); ?>";
 
 								var ticketURL = baseURL + "/tickets/?eventID=" + ticketID;
 
@@ -367,13 +368,13 @@ get_header();
 							var filterTemplate = window.filterTemplate = Handlebars.compile(filterSource);
 
 
-							$("#filter-holder").append(filterTemplate( {filters:filters} ) );
 							$("#stache-holder").append(template(
 											{
 												theResult:result,
 												theOffset:offset
 											}
 										));
+							$("#filter-holder").append(filterTemplate( {filters:filters} ) );
 							if ( filters.Ranges.length > 0 ) {
 								// register begin and end date pickers
 								$( addPickerListeners() );
