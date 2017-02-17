@@ -9,3 +9,4 @@ hooks:
   BeforeInstall:
     - location: /var/opt/ready.sh
       timeout: 3600
+      runas: codedeployuser
