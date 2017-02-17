@@ -9,3 +9,6 @@ hooks:
   BeforeInstall:
     - location: scripts/beforeinstall.sh
       timeout: 3600
+  AfterInstall:
+    - location: scripts/afterinstall.sh
+      timeout: 3600
