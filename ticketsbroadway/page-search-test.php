@@ -263,7 +263,7 @@ get_header();
 							// pagination helper
 							Handlebars.registerHelper( "numResults", function( arrEvents, offset ) {
 								offset = offset === undefined ? 0 : offset;
-								//return arrEvents.length == 0 ? null : arrEvents.slice(offset, offset + 3);
+								return arrEvents.length == 0 ? null : arrEvents.slice(offset, offset + 25);
 								return arrEvents;
 							} );
 
