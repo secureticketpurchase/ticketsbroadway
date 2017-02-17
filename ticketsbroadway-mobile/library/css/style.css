@@ -66,6 +66,10 @@ body.mobile {
   probably best not to use it. I mean, were you going to anyway? */
 }
 /* line 2, ../scss/style.scss */
+body.mobile .body-content.contactuspage {
+  width: 100%;
+}
+/* line 5, ../scss/style.scss */
 body.mobile .flip {
   -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);
@@ -74,7 +78,7 @@ body.mobile .flip {
   filter: FlipH;
   -ms-filter: "FlipH";
 }
-/* line 10, ../scss/style.scss */
+/* line 13, ../scss/style.scss */
 body.mobile .flip-up {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
@@ -82,12 +86,12 @@ body.mobile .flip-up {
   -o-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-/* line 17, ../scss/style.scss */
+/* line 20, ../scss/style.scss */
 body.mobile img {
   width: 100%;
   height: auto;
 }
-/* line 21, ../scss/style.scss */
+/* line 24, ../scss/style.scss */
 body.mobile .header-style {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -100,7 +104,7 @@ body.mobile .header-style {
   border-top-left-radius: 5px;
   padding: 5px;
 }
-/* line 36, ../scss/style.scss */
+/* line 39, ../scss/style.scss */
 body.mobile .buy-tickets {
   text-decoration: none;
   text-transform: uppercase;
@@ -316,10 +320,10 @@ body.mobile #top-sellers .top-seller-list li img, body.mobile #top-sellers .top-
 }
 /* line 109, ../scss/mobile/_front.scss */
 body.mobile #top-sellers .top-seller-list li a, body.mobile #top-sellers .top-seller-list ul li a {
-  font-size: 13px;
+  font-size: 16px;
   color: #666666;
   font-weight: 600;
-  padding: 0px 12px;
+  padding: 2px 12px;
   text-decoration: none;
   display: inline-block;
   width: 90%;
@@ -1033,22 +1037,22 @@ body.mobile .body-content .mapLocation iframe {
   width: 100%;
   height: 100%;
 }
-/* line 1, ../scss/mobile/_events.scss */
-body.mobile .events-search {
+/* line 2, ../scss/mobile/_events.scss */
+body.mobile #content.event-result .events-search {
   display: block;
   width: 40%;
   font-size: 13px;
 }
-/* line 6, ../scss/mobile/_events.scss */
-body.mobile .body-content {
+/* line 7, ../scss/mobile/_events.scss */
+body.mobile #content.event-result .body-content {
   width: 60%;
 }
-/* line 9, ../scss/mobile/_events.scss */
-body.mobile .body-content #events-results-table tr#header {
+/* line 10, ../scss/mobile/_events.scss */
+body.mobile #content.event-result .body-content #events-results-table tr#header {
   display: none;
 }
-/* line 12, ../scss/mobile/_events.scss */
-body.mobile .body-content #events-results-table td {
+/* line 13, ../scss/mobile/_events.scss */
+body.mobile #content.event-result .body-content #events-results-table td {
   display: block;
 }
 /* line 2, ../scss/mobile/_footer.scss */
