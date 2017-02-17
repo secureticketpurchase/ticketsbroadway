@@ -5,3 +5,7 @@ files:
       destination: /var/www/html/wp-content/themes/ticketsbroadway
     - source: ticketsbroadway-mobile
       destination: /var/www/html/wp-content/themes/ticketsbroadway-mobile
+hooks:
+  BeforeInstall:
+    - location: /var/opt/ready.sh
+      timeout: 3600
