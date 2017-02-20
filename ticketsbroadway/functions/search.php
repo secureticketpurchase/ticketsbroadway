@@ -33,7 +33,7 @@ function get_filter_form($options){
             $month = "";
         ?>
         <input type="hidden" name="search_post_type" value="shows" /> <!-- // hidden 'products' value -->
-        <input type="hidden" name="search_tosearch" value="<?php $toSearch; ?>" />
+        <input type="hidden" name="search_tosearch" value="<?php echo $toSearch; ?>" />
         <input type="hidden" name="search_paged" value="<?php echo $search_paged; ?>"/>
         <div class="genre-filter">
             <input type="hidden" name="search_genre" value="<?php echo $genre; ?>" />
