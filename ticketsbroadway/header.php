@@ -142,6 +142,7 @@
                             		</div>
                             	<?php }
                             	echo "</div>";
+                            	$cntr++;
                             }
                             ?>
                         </div>
