@@ -50,6 +50,7 @@
 										break;
 									case 1:
 										$intermissions = "1 Intermission";
+										break;
 									default:
 										$intermissions = $intermissionNum . " Intermissions";
 										break;

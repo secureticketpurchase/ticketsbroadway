@@ -30,6 +30,7 @@
 										break;
 									case 1:
 										$slide['intermissions'] = " | 1 Intermission";
+										break;
 									default:
 										$slide['intermissions'] = " | " . $intermissionNum . " Intermissions";
 										break;

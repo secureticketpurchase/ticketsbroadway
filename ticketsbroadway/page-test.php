@@ -24,6 +24,8 @@ $timeBegun = new DateTime();
 
 			<?php
 
+			$currTime;
+
 			$conn = new TicketNetworkConnection();
 
 			$newShows = array();
