@@ -75,7 +75,9 @@
 											"post_type"			=> "venue",
 											'meta_key'			=> 'city',
 											'meta_value'		=> $cityName,
-											"posts_per_page"	=> -1
+											"posts_per_page"	=> -1,
+											"order"				=> "ASC",
+											"orderby"			=> "title"
 										);
 
 									$venues = get_posts( $args );
