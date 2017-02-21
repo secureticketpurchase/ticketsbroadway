@@ -78,10 +78,10 @@ function get_filter_form($options){
             <?php }
             if ( isset($options['month']['style']) && $options['month']['style'] == "list" ) { ?>
                 <ul id="month-filter">
-                    <li id=""><span class="month-name">All Months</span></li>
+                    <li id="" <?php if($month == ""){ echo "class='active'"; }?> >All Months</li>
                     <?php
-                    for( $m=0; $m <= 11; $m++ ) {
-                        $monthName = date( 'F', mktime( 0, 0, 0, $m+1, 1, date('Y') ) );?>
+                    for( $m=1; $m <= 12; $m++ ) {
+                        $monthName = date( 'F', mktime( 0, 0, 0, $m, 1, date('Y') ) );?>
                     <li id="<?php echo $m; ?>" <?php if($month == $m){ echo "class='active'"; }?> ><?php echo $monthName; ?></li>
                    <?php } ?>
                 </ul>
@@ -102,7 +102,7 @@ function get_filter_form($options){
                 <img src="<?php echo get_template_directory_uri(); ?>/library/assets/icons/star-orange.png" class="filter-star" /><option value="11" <?php if($month == 11){ echo "selected='selected'";} ?>>December</option>
             </select>
                             <script type="text/javascript">
-                $('.month-selector').val(new Date().getMonth());
+                $('.month-selector').val(new Date().getMonth()+1);
             </script>
             <?php } ?>
         </div>
