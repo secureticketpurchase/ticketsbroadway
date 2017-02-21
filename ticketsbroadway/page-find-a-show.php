@@ -122,9 +122,6 @@
 							<?php endwhile; ?>
 							<?php wp_reset_query(); ?>
 							<?php
-							printDat( $numP );
-							printDat( $total );
-							printDat($paged);
 							if ( $total != 1 ) { ?>
 							<nav class="pagination">
 							<?php $pages = array($paged -2, $paged -1, $paged, $paged + 1, $paged +2); ?>
