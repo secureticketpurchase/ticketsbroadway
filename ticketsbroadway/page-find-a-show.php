@@ -121,22 +121,30 @@
 							
 							<?php endwhile; ?>
 							<?php wp_reset_query(); ?>
+							<?php
+							printDat( $numP );
+							printDat( $total );
+							printDat($paged);
+							if ( $total != 1 ) { ?>
 							<nav class="pagination">
 							<?php $pages = array($paged -2, $paged -1, $paged, $paged + 1, $paged +2); ?>
 								<ul class="page-numbers">
-								<?php if($total != 1){ ?>
-									<li><a class="page-numbers search-page-paged"  data-page="<?php echo $next -1; ?>">←</a></li>
+								<?php if($total != 1 && $paged != 1){ ?>
+									<li><a class="page-numbers search-page-paged"  data-page="<?php echo $paged - 1; ?>">←</a></li>
 								<?php } ?>
-								<?php for($i=0;$i<=count($pages);$i++){ 
+								<?php for($i=0;$i<count($pages);$i++){
 									$next = $pages[$i];
-									if($next < 1){ continue; } ?>
+									if( $next > $total ) break;
+
+									if($next < 1 || $pages[$i] < 1){ continue; } ?>
 									<li><a class="page-numbers search-page-paged"  data-page="<?php echo $next; ?>"><?php echo $next; ?></a></li>
 								<?php } ?>
-								<?php if($total > 1){ ?>
-									<li><a class="page-numbers search-page-paged"  data-page="<?php echo $next +1; ?>">→</a></li>
+								<?php if($total > 1  && $paged < $total){ ?>
+									<li><a class="page-numbers search-page-paged"  data-page="<?php echo $paged + 1; ?>">→</a></li>
 								<?php } ?>
 								</ul>
 							</nav>
+							<?php } ?>
 							
 							<?php else : ?>
 
