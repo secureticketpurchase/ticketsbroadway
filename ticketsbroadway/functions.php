@@ -1212,10 +1212,15 @@ function getEventResults( ) {
 
     // find something like handlebars to manipulate with javascript
     // use Javascript "map" function to pop out arrays
-    echo "<script>result = " . json_encode( $result->SearchEventsResult->Event ) . ";</script>";
+    //echo "<script>result = " . json_encode( $result->SearchEventsResult->Event ) . ";</script>";
 
-    return $result->SearchEventsResult->Event;
+    //return $result->SearchEventsResult->Event;
+    header('Content-type: application/json');
+    echo json_encode( $result->SearchEventsResult->Event );
+    die();
 }
+add_action( "wp_ajax_nopriv_get_event_results", "getEventResults" );
+add_action( "wp_ajax_get_event_results", "getEventResults" );
 
 function printDat( $toPrint ) {
   echo "<pre>";
