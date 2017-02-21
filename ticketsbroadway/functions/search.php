@@ -113,7 +113,7 @@ function get_filter_form($options){
             
             <?php }
             // let get a list of all cities in the DB, build a selector for each one
-            $cities = get_posts( array( "post_type" => "city" ) );
+            $cities = get_posts( array( "post_type" => "city", "posts_per_page" => -1 ) );
             ?>
             <select id="city-filter" <?php echo (isset($options['city']['multi'])) ? "multiple" : ""; ?>>
                 <option value="">All Cities</option>
