@@ -912,14 +912,29 @@ function handleCalendar( $showID, $dates=null, $venueWPID="", $mobile = false ) 
     
     // grab "week" variable from $_POST, if set, use that to build start and end dates, else call "getDates"
     $week = $_POST['data']['week'];
+
+    $today = new DateTime('today');
+    // if there's no week value, and the selected month matches current month, choose current week
+    if ( $week == "" && $today->format('n') - 1 == $monthVal ) {
+      $start = new DateTime();
+      $start->setISODate( $today->format('Y'), $today->format('W'), 0);
+      $week = $start->format('Y-m-d');
+    }
+
     //echo "Week is $week";
     if ( $week != '' ) {
       $trashDate = new DateTime( $week );
       $dates['start'] = new DateTime( $trashDate->format( 'Y-m-d' ) );
       $trashDate->modify( "+6 days" );
       $dates['end'] = new DateTime( $trashDate->format( 'Y-m-d' ) );
-    } else {
-      $dates = getDates( '', $monthVal );
+    } else if ( $week == '' ) {
+      // check if current month matches selected month, select current week if so
+      $today = new DateTime();
+      if ( $today->format('n')-1 == $monthVal) {
+        $week = $today->format('W');
+        //printDat($week);
+      }
+      $dates = getDates( $week, $monthVal );
     }
     //var_dump($dates);
     //wp_die();
