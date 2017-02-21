@@ -247,9 +247,9 @@ get_header();
 									//console.log(res);
 									result = res;
 									console.log(result);
-									/*$("#stache-holder").html(template( 
+									$("#stache-holder").html(template( 
 											{theResult:result, theOffset:offset}
-										));*/
+										));
 									populateFilters( result );
 
 									// create array to hold original filters, to be used when resetting a single filter
