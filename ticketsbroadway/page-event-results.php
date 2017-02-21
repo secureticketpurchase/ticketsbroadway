@@ -39,10 +39,13 @@ get_header();
 						global $wpdb;
 						$table = $wpdb->prefix . "categories";
 						$catArray = $wpdb->get_results( "SELECT id, name FROM " . $table, OBJECT_K );
+						foreach( $catArray as $cat ) {
+							$catArray[$cat->id]->name = ucfirst( strtolower($cat->name) );
+						}
 
 						echo "<script>var catArray = " . json_encode( $catArray ) . ";</script>";
 
-						getEventResults();
+						//getEventResults();
 
 						?>
 
@@ -75,6 +78,7 @@ get_header();
 							};
 
 							var offset = 0;
+							var result;
 
 
 							// function for populating the filter arrays
@@ -234,29 +238,53 @@ get_header();
 								}
 							}
 
+							function loadEventResults() {
+								var toPass = {
+									action: "get_event_results",
+									data: offset
+								}
+								$.post( ticket_ajax.ajaxurl, toPass ).done( function(res){
+									//console.log(res);
+									result = res;
+									console.log(result);
+									$("#stache-holder").html(template( 
+											{theResult:result, theOffset:offset}
+										));
+									populateFilters( result );
+
+									// create array to hold original filters, to be used when resetting a single filter
+									defaultFilters = {
+										Days: filters.Days,
+										Categories: filters.Categories,
+										Shows: filters.Shows,
+										Months: filters.Months,
+										Venues: filters.Venues,
+										Times: filters.Times,
+										Cities: filters.Cities,
+										Dates: filters.Dates,
+										Ranges: filters.Ranges
+									};
+
+									$("#filter-holder").append(filterTemplate( {filters:filters} ) );
+								});
+
+							};
+
 							jQuery(document).ready(function() {
 								// initial population of the filters to be manipulated
-								populateFilters( result );
-
-								// create array to hold original filters, to be used when resetting a single filter
-								var defaultFilters = {
-									Days: filters.Days,
-									Categories: filters.Categories,
-									Shows: filters.Shows,
-									Months: filters.Months,
-									Venues: filters.Venues,
-									Times: filters.Times,
-									Cities: filters.Cities,
-									Dates: filters.Dates,
-									Ranges: filters.Ranges
-								};
-
-								$("#filter-holder").append(filterTemplate( {filters:filters} ) );
+								loadEventResults();
 							});
 
 						</script>
 
-						<div id="stache-holder"></div>
+						<div id="stache-holder">
+							<div class="sk-folding-cube">
+								<div class="sk-cube1 sk-cube"></div>
+								<div class="sk-cube2 sk-cube"></div>
+								<div class="sk-cube4 sk-cube"></div>
+								<div class="sk-cube3 sk-cube"></div>
+							</div>
+						</div>
 						<div id="pagination-holder"></div>
 
 						<script type="text/javascript">

@@ -127,6 +127,7 @@ function sendCalData() {
 		console.log(res)
 	} );
 };
+
 var showMenuTimeout;
 var revealTimeout;
 function revealGenreShows(e){
