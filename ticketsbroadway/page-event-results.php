@@ -39,6 +39,9 @@ get_header();
 						global $wpdb;
 						$table = $wpdb->prefix . "categories";
 						$catArray = $wpdb->get_results( "SELECT id, name FROM " . $table, OBJECT_K );
+						foreach( $catArray as $cat ) {
+							$catArray[$cat->id]->name = ucfirst( strtolower($cat->name) );
+						}
 
 						echo "<script>var catArray = " . json_encode( $catArray ) . ";</script>";
 
