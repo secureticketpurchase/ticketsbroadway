@@ -158,10 +158,12 @@ get_header();
 								        var showMore = $("<li></li>");
 								        showMore.attr("class", "sub_accordian");
 								        showMore.html("<span class='show_more'>(see more)</span>");
-								        // attach the function toggles visibility and switches its content
+								        // attach the function that toggles visibility and switches its content
 							        	showMore.click( function(){
 								            $(this).siblings('.filter-item:gt('+max+')').toggle();
-								            if ( $('.show_more').length ) {
+								            //if ( $('.show_more').length ) {
+								            //console.log( $(this).find("span:first").attr('class') );
+								            if ( $(this).find('span:first').attr('class') == 'show_more') {
 								                $(this).html('<span class="show_less">(see less)</span>');
 								            } else {
 								                $(this).html('<span class="show_more">(see more)</span>');
@@ -258,6 +260,8 @@ get_header();
 											{theResult:filteredResults, theOffset:offset}
 										));
 									$("#filter-holder").html(filterTemplate( {filters:filters} ) );
+									hideFilters();
+
 									
 									// register begin and end date pickers
 									$( addPickerListeners() );
