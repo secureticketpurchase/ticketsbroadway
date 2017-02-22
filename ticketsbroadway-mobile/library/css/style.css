@@ -1056,83 +1056,83 @@ body.mobile #content.event-result .body-content #events-results-table td {
   display: block;
 }
 /* line 2, ../scss/mobile/_footer.scss */
-body.mobile .footer img {
+body.mobile .footer-main img {
   width: auto;
 }
 /* line 5, ../scss/mobile/_footer.scss */
-body.mobile .footer #inner-footer {
+body.mobile .footer-main #inner-footer {
   padding: 15px;
 }
 /* line 8, ../scss/mobile/_footer.scss */
-body.mobile .footer .footer-columns {
+body.mobile .footer-main .footer-columns {
   font-size: 13px;
 }
 /* line 11, ../scss/mobile/_footer.scss */
-body.mobile .footer .footer-columns li {
+body.mobile .footer-main .footer-columns li {
   border-bottom: none;
   height: 1.5em;
 }
 /* line 14, ../scss/mobile/_footer.scss */
-body.mobile .footer .footer-columns li:before {
+body.mobile .footer-main .footer-columns li:before {
   content: url(../assets/mobile/small-arrow.png);
 }
 /* line 17, ../scss/mobile/_footer.scss */
-body.mobile .footer .footer-columns li a {
+body.mobile .footer-main .footer-columns li a {
   color: #FFFFFF;
 }
 /* line 21, ../scss/mobile/_footer.scss */
-body.mobile .footer .footer-columns .column {
+body.mobile .footer-main .footer-columns .column {
   flex-basis: 35%;
   margin: 0px 5px;
 }
 /* line 24, ../scss/mobile/_footer.scss */
-body.mobile .footer .footer-columns .column:last-child {
+body.mobile .footer-main .footer-columns .column:last-child {
   flex-basis: 20%;
 }
 /* line 27, ../scss/mobile/_footer.scss */
-body.mobile .footer .footer-columns .column p {
+body.mobile .footer-main .footer-columns .column p {
   margin-left: 10px;
 }
 /* line 32, ../scss/mobile/_footer.scss */
-body.mobile .footer .footer-social {
+body.mobile .footer-main .footer-social {
   top: 0px;
   display: flex;
   width: 100%;
   justify-content: flex-start;
 }
 /* line 37, ../scss/mobile/_footer.scss */
-body.mobile .footer .footer-social a {
+body.mobile .footer-main .footer-social a {
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
 }
 /* line 44, ../scss/mobile/_footer.scss */
-body.mobile .footer .footer-social a.youtube-icon img {
+body.mobile .footer-main .footer-social a.youtube-icon img {
   height: auto;
 }
 /* line 50, ../scss/mobile/_footer.scss */
-body.mobile .footer a.am-switch-btn.godesktop {
+body.mobile .footer-main a.am-switch-btn.godesktop {
   color: #FFFFFF;
 }
 /* line 53, ../scss/mobile/_footer.scss */
-body.mobile .footer .lower-inner-footer {
+body.mobile .footer-main .lower-inner-footer {
   position: relative;
 }
 /* line 56, ../scss/mobile/_footer.scss */
-body.mobile .footer .lower-inner-footer img:first-child {
+body.mobile .footer-main .lower-inner-footer img:first-child {
   width: 37%;
   position: absolute;
   bottom: 1px;
   float: left;
 }
 /* line 62, ../scss/mobile/_footer.scss */
-body.mobile .footer .lower-inner-footer img:last-child {
+body.mobile .footer-main .lower-inner-footer img:last-child {
   float: right;
   width: 60%;
 }
 /* line 66, ../scss/mobile/_footer.scss */
-body.mobile .footer .lower-inner-footer:after {
+body.mobile .footer-main .lower-inner-footer:after {
   clear: both;
   display: block;
   content: "";

@@ -5,7 +5,7 @@
     Top <img  class="flip-up" src="<?php echo get_stylesheet_directory_uri(); ?>/library/assets/mobile/arrow-button.png" style="width:15px;" />
     </a>
 </div>
-<footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+<footer class="footer-main" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
 
 				<div class="footer-top wrap">
 					<div class="footer-social">
@@ -43,7 +43,7 @@
 						<img src="<?php echo get_stylesheet_directory_uri(); ?>/library/assets/mobile/tb-footer-credit-cards-norton.png" class="footer-cards" />
 					</div>
                         <div class="copyright">
-            &copy;<?php echo Date('Y'); ?>Tickets Broadway. All rights reserved
+            &copy;<?php echo Date('Y'); ?> Tickets Broadway. All rights reserved
         </div>
 				</div>
 
