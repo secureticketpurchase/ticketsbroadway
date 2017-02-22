@@ -353,7 +353,6 @@ get_header();
 									html += "<li class='filter-item' data-value='" + theFilter.id + "' data-name='" + filterName + "' onclick='applyFilters(this)'>" + theFilter.name + "</li>";
 								} else if (filterName == "Dates") {
 									html += "<li data-value='" + theFilter + "' data-name='" + filterName + "' onclick='applyFilters(this)'>" + theFilter + "</li>";
-								}
 								} else if(filterName == "Ranges"){
 									console.log("theFilter is " + theFilter );
 									html += "<input type='text' id='beginDatePicker' placeholder='from' /><br />";
