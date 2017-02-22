@@ -933,11 +933,13 @@ article h1 {
 					}
 				}
 				&.show-title{
+					width: 33%;
 					font-weight: 700;
 				}
 				&.location{
 					padding-left:25px;
 					position:relative;
+					width: 33%;
 					&:before{
 						content:url('../assets/icons/location-icon.png');
 						position:absolute;
