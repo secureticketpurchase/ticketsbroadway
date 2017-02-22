@@ -143,6 +143,33 @@ get_header();
 
 								
 								filters.Ranges.push({beginDate:"", endDate:""});
+
+							}
+
+							function hideFilters() {
+								// Javascript for adding "show more" button and functionality
+								$('.filter-ul').each(function(index){
+								    var max = 2;
+								    if ($(this).find('li.filter-item').length > max) {
+
+								        $(this).find('li.filter-item:gt('+max+')').hide();
+
+								        //try creating the .sub_accordian element using jQuery
+								        var showMore = $("<li></li>");
+								        showMore.attr("class", "sub_accordian");
+								        showMore.html("<span class='show_more'>(see more)</span>");
+								        // attach the function toggles visibility and switches its content
+							        	showMore.click( function(){
+								            $(this).siblings('.filter-item:gt('+max+')').toggle();
+								            if ( $('.show_more').length ) {
+								                $(this).html('<span class="show_less">(see less)</span>');
+								            } else {
+								                $(this).html('<span class="show_more">(see more)</span>');
+								            };
+								        });
+								        $(this).append(showMore);
+								    };
+								});
 							}
 
 							// function for applying the filters to the result set, returns true or false (to be used with the JS "filter" method)
@@ -266,6 +293,7 @@ get_header();
 									};
 
 									$("#filter-holder").append(filterTemplate( {filters:filters} ) );
+									hideFilters();
 								});
 
 							};
@@ -321,15 +349,16 @@ get_header();
 
 							Handlebars.registerHelper( "buildList", function( filterName, theFilter ) {
 								var html = "";
-								console.log(filterName);
 								if(filterName == "Categories") {
-									html += "<li data-value='" + theFilter.id + "' data-name='" + filterName + "' onclick='applyFilters(this)'>" + theFilter.name + "</li>";
+									html += "<li class='filter-item' data-value='" + theFilter.id + "' data-name='" + filterName + "' onclick='applyFilters(this)'>" + theFilter.name + "</li>";
+								} else if (filterName == "Dates") {
+									html += "<li data-value='" + theFilter + "' data-name='" + filterName + "' onclick='applyFilters(this)'>" + theFilter + "</li>";
 								} else if(filterName == "Ranges"){
 									console.log("theFilter is " + theFilter );
 									html += "<input type='text' id='beginDatePicker' placeholder='from' /><br />";
 									html += "<input type='text' id='endDatePicker' placeholder='to' />";
 								} else {
-									html += "<li data-value='" + theFilter + "' data-name='" + filterName + "' onclick='applyFilters(this)'>" + theFilter + "</li>";
+									html += "<li class='filter-item' data-value='" + theFilter + "' data-name='" + filterName + "' onclick='applyFilters(this)'>" + theFilter + "</li>";
 								}
 								return new Handlebars.SafeString( html );
 							});
@@ -362,7 +391,7 @@ get_header();
 						<script id="filter-template" type="text/x-handlebars-template">
 							
 							{{#each filters as |filter name|}}
-								<ul id={{name}}>
+								<ul id={{name}} class="filter-ul">
 									<li data-value='all' data-name='{{name}}' onclick='applyFilters(this)'>All {{name}}</li>
 								{{#each filter}}
 									{{buildList name this}}
@@ -453,6 +482,7 @@ get_header();
 										{theResult:filteredResults, theOffset:offset}
 									));
 								$("#filter-holder").html(filterTemplate( {filters:filters} ) );
+								hideFilters();
 								if ( filters.Ranges.length > 0 ) {
 									// register begin and end date pickers
 									$( addPickerListeners() );
