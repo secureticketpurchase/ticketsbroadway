@@ -1187,6 +1187,7 @@ function tb_register_query_vars( $vars ) {
   $vars[] = "tosearch";
   $vars[] = "tab";
   $vars[] = "genre";
+  $vars[] = "tosearch";
 
   return $vars;
 }
@@ -1197,7 +1198,9 @@ function getEventResults( ) {
 
   $params = array();
   $params[ 'websiteConfigID' ] = WEB_CONF_ID;
-  $params[ 'searchTerms' ] = get_query_var( 'tosearch', 'ca' );
+  //$toSearch = get_query_var( 'tosearch' );
+  $toSearch = $_POST['data']['tosearch'];
+  $params[ 'searchTerms' ] = $toSearch;
 
   // account for no search term or a single result
 

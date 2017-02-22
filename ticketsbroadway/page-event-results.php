@@ -44,6 +44,7 @@ get_header();
 						}
 
 						echo "<script>var catArray = " . json_encode( $catArray ) . ";</script>";
+						echo "<script>var tosearch = '" . $search . "';</script>";
 
 						//getEventResults();
 
@@ -272,12 +273,15 @@ get_header();
 							function loadEventResults() {
 								var toPass = {
 									action: "get_event_results",
-									data: offset
+									data: {
+										tosearch: tosearch
+									}
 								}
+								console.log(toPass);
 								$.post( ticket_ajax.ajaxurl, toPass ).done( function(res){
 									//console.log(res);
 									result = res;
-									console.log(result);
+									//console.log(result);
 									$("#stache-holder").html(template( 
 											{theResult:result, theOffset:offset}
 										));
