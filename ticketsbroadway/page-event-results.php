@@ -298,6 +298,12 @@ get_header();
 
 									$("#filter-holder").append(filterTemplate( {filters:filters} ) );
 									hideFilters();
+
+									if ( filters.Ranges.length > 0 ) {
+										// register begin and end date pickers
+										$( addPickerListeners() );
+										$( doPagination(result) );
+									}
 								});
 
 							};
