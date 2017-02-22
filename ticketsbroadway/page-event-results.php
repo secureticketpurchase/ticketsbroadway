@@ -151,7 +151,7 @@ get_header();
 								$('.filter-ul').each(function(index){
 								    var max = 2;
 								    if ($(this).find('li.filter-item').length > max) {
-								    	
+
 								        $(this).find('li.filter-item:gt('+max+')').hide();
 
 								        //try creating the .sub_accordian element using jQuery
@@ -351,6 +351,9 @@ get_header();
 								var html = "";
 								if(filterName == "Categories") {
 									html += "<li class='filter-item' data-value='" + theFilter.id + "' data-name='" + filterName + "' onclick='applyFilters(this)'>" + theFilter.name + "</li>";
+								} else if (filterName == "Dates") {
+									html += "<li data-value='" + theFilter + "' data-name='" + filterName + "' onclick='applyFilters(this)'>" + theFilter + "</li>";
+								}
 								} else if(filterName == "Ranges"){
 									console.log("theFilter is " + theFilter );
 									html += "<input type='text' id='beginDatePicker' placeholder='from' /><br />";
