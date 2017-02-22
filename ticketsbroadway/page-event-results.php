@@ -339,8 +339,8 @@ get_header();
 							<table id="events-results-table">
 								<tr id="header">
 									<td>Date & Time</td>
-									<td>Event</td>
-									<td>Location</td>
+									<td class="event-column">Event</td>
+									<td class="location-column">Location</td>
 									<td></td>
 								</tr>
 								{{#each (numResults theResult 0)}}
