@@ -31,7 +31,7 @@ get_header();
 
 						<h1>Search Results for: <?php echo $search; ?></h1>
 
-						<script type="text/javascript">var result;</script>
+						<script type="text/javascript">var result = "";</script>
 
 						<?php
 
@@ -41,6 +41,33 @@ get_header();
 						$catArray = $wpdb->get_results( "SELECT id, name FROM " . $table, OBJECT_K );
 						foreach( $catArray as $cat ) {
 							$catArray[$cat->id]->name = ucfirst( strtolower($cat->name) );
+						}
+
+						// first, search for the searched term in the DB, either add or increment
+						$searched_terms_table = $wpdb->prefix . "searched_terms";
+						$term_query = "SELECT id FROM $searched_terms_table WHERE term = '" . $search . "'";
+						$term_db_id = $wpdb->get_col($term_query);
+
+						if ( isset($term_db_id[0]) ) {
+							$query = "UPDATE $searched_terms_table SET num_searched = num_searched+1 WHERE id = $term_db_id[0]";
+							$success = $wpdb->query($query);
+						} else {
+							$add_term_array = array( 'term' => $search );
+							$wpdb->insert(
+								$searched_terms_table,
+								$add_term_array
+							);
+						}
+
+						// try to grab a cached result...if there is one, set the JS var "result" equal to it
+						$cached_table = $wpdb->prefix . "cached_results";
+						$cache_query = "SELECT result FROM $cached_table WHERE term = '" . $search . "'";
+						$cache_res = $wpdb->get_col($cache_query);
+
+						//printDat( $cache_res );
+
+						if( isset($cache_res[0]) ) {
+							echo "<script>result = " . $cache_res[0] . ";</script>";
 						}
 
 						echo "<script>var catArray = " . json_encode( $catArray ) . ";</script>";
@@ -65,23 +92,9 @@ get_header();
 								Ranges: []
 							};
 
-							// create array to hold original filters, to be used when resetting a single filter
-							var defaultFilters = {
-								Days: [],
-								Categories: [],
-								Shows: [],
-								Months: [],
-								Venues: [],
-								Times: [],
-								Cities: [],
-								Dates: [],
-								Ranges: []
-							};
-
 							var offset = 0;
 							var numResults = 25;
 							var toAdd = 25; // how many results get added per click?
-							var result;
 
 
 							// function for populating the filter arrays
@@ -290,38 +303,55 @@ get_header();
 										tosearch: tosearch
 									}
 								}
-								console.log(toPass);
-								$.post( ticket_ajax.ajaxurl, toPass ).done( function(res){
-									//console.log(res);
-									result = res;
-									//console.log(result);
+								console.log(result);
+								if ( result != "" ) {
 									$("#stache-holder").html(template( 
 											{theResult:result, theOffset:offset}
 										));
+									//result = res;
 									populateFilters( result );
 
-									// create array to hold original filters, to be used when resetting a single filter
-									defaultFilters = {
-										Days: filters.Days,
-										Categories: filters.Categories,
-										Shows: filters.Shows,
-										Months: filters.Months,
-										Venues: filters.Venues,
-										Times: filters.Times,
-										Cities: filters.Cities,
-										Dates: filters.Dates,
-										Ranges: filters.Ranges
-									};
-
-									$("#filter-holder").append(filterTemplate( {filters:filters} ) );
-
-									hideFilters();
 									doPagination(result);
 
 									if ( filters.Ranges.length > 0 ) {
 										// register begin and end date pickers
 										$( addPickerListeners() );
 										//$( doPagination(result) );
+									}
+								}
+								$.post( ticket_ajax.ajaxurl, toPass ).done( function(res){
+
+									//console.log(res);
+									if ( result == "" ) {
+										result = res;
+										//result = res;
+										$("#stache-holder").html(template( 
+												{theResult:result, theOffset:offset}
+											));
+										populateFilters( result );
+
+										$("#filter-holder").append(filterTemplate( {filters:filters} ) );
+
+										hideFilters();
+										doPagination(result);
+
+										if ( filters.Ranges.length > 0 ) {
+											// register begin and end date pickers
+											$( addPickerListeners() );
+											//$( doPagination(result) );
+										}
+									} else {
+										result = res;
+										$("#filter-holder").append(filterTemplate( {filters:filters} ) );
+
+										hideFilters();
+										doPagination(result);
+
+										if ( filters.Ranges.length > 0 ) {
+											// register begin and end date pickers
+											$( addPickerListeners() );
+											//$( doPagination(result) );
+										}
 									}
 								});
 
