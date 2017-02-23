@@ -95,7 +95,8 @@ set_time_limit(0);
 			}
 
 			$autoCache[] = "chicago";
-			$autoCache[] = "vegas";
+			$autoCache[] = "new york";
+			$autoCache[] = "hamilton";
 
 			foreach( $autoCache as $term ){
 
