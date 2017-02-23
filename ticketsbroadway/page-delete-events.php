@@ -38,7 +38,7 @@
 
 			// the following block implements and manages the cache
 			// first clear log of today's searched terms, unless they were searched more than $max times
-			$max = 0;
+			$max = 50;
 			$searched_table = $wpdb->prefix . "searched_terms";
 			$delete_searched_query = "DELETE FROM $searched_table WHERE num_searched < $max";
 			$searched_result = $wpdb->query( $delete_searched_query, ARRAY_A );
@@ -56,7 +56,8 @@
 			$params[ 'websiteConfigID' ] = WEB_CONF_ID;
 
 			$cache_table = $wpdb->prefix . 'cached_results';
-			$delete_cached_query = "DELETE * FROM $cache_table";
+			$delete_cached_query = "TRUNCATE table $cache_table";
+			$numKilled = $wpdb->query( $delete_cached_query );
 			
 			// commence foreach loop, grabbing result sets for each term, and pushing them into the cache table
 			foreach( $toCache as $term ){
@@ -75,7 +76,7 @@
 					printDat($result->SearchEventsResult->Event);
 				}
 
-				$toInsert = array_slice( $result->SearchEventsResult->Event, 0, 2 );
+				$toInsert = array_slice( $result->SearchEventsResult->Event, 0, 25 );
 				$encodedRes = json_encode($toInsert);
 				echo "<h1>toInsert</h1>";
 				printDat($encodedRes);

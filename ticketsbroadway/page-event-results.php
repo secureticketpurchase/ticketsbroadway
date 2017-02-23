@@ -61,8 +61,10 @@ get_header();
 
 						// try to grab a cached result...if there is one, set the JS var "result" equal to it
 						$cached_table = $wpdb->prefix . "cached_results";
-						$cache_query = "SELECT result FROM $cached_table WHERE term = $search";
+						$cache_query = "SELECT result FROM $cached_table WHERE term = '" . $search . "'";
 						$cache_res = $wpdb->get_col($cache_query);
+
+						//printDat( $cache_res );
 
 						if( isset($cache_res[0]) ) {
 							echo "<script>result = " . $cache_res[0] . ";</script>";
@@ -93,7 +95,6 @@ get_header();
 							var offset = 0;
 							var numResults = 25;
 							var toAdd = 25; // how many results get added per click?
-							var result;
 
 
 							// function for populating the filter arrays
@@ -302,26 +303,49 @@ get_header();
 										tosearch: tosearch
 									}
 								}
-								console.log(toPass);
-								$.post( ticket_ajax.ajaxurl, toPass ).done( function(res){
-									//console.log(res);
-									//if ( result != "" )
-									result = res;
-									//console.log(result);
+								console.log(result);
+								if ( result != "" ) {
 									$("#stache-holder").html(template( 
 											{theResult:result, theOffset:offset}
 										));
+									//result = res;
 									populateFilters( result );
 
-									$("#filter-holder").append(filterTemplate( {filters:filters} ) );
-
-									hideFilters();
 									doPagination(result);
 
 									if ( filters.Ranges.length > 0 ) {
 										// register begin and end date pickers
 										$( addPickerListeners() );
 										//$( doPagination(result) );
+									}
+								}
+								$.post( ticket_ajax.ajaxurl, toPass ).done( function(res){
+
+									//console.log(res);
+									if ( result == "" ) {
+										result = res;
+										//result = res;
+										$("#stache-holder").html(template( 
+												{theResult:result, theOffset:offset}
+											));
+										populateFilters( result );
+
+										$("#filter-holder").append(filterTemplate( {filters:filters} ) );
+
+										hideFilters();
+										doPagination(result);
+
+										if ( filters.Ranges.length > 0 ) {
+											// register begin and end date pickers
+											$( addPickerListeners() );
+											//$( doPagination(result) );
+										}
+									} else {
+										result = res;
+										$("#filter-holder").append(filterTemplate( {filters:filters} ) );
+
+										hideFilters();
+										doPagination();
 									}
 								});
 
