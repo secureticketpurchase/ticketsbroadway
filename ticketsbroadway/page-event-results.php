@@ -280,7 +280,6 @@ get_header();
 									
 									// register begin and end date pickers
 									$( addPickerListeners() );
-									//$( doPagination(filteredResults) );
 								}
 							}
 
@@ -467,6 +466,7 @@ get_header();
 								if( data == "all") {
 									populateFilters(result);
 									filteredResults = result.filter(filterResults);
+									console.log("all filtered results is",filteredResults);
 								} else {
 									//select filter array to change
 									switch(name) {
@@ -505,7 +505,7 @@ get_header();
 											console.log( "filtered Dates is " , filters.Dates );
 									}
 
-									var filteredResults = result.filter(filterResults);
+									filteredResults = result.filter(filterResults);
 									populateFilters(filteredResults);
 
 								}
@@ -515,11 +515,10 @@ get_header();
 									));
 								$("#filter-holder").html(filterTemplate( {filters:filters} ) );
 								hideFilters();
-								//doPagination(filteredResults)
+								doPagination(filteredResults)
 								if ( filters.Ranges.length > 0 ) {
 									// register begin and end date pickers
 									$( addPickerListeners() );
-									//$( doPagination(filteredResults) );
 								}
 							}
 
