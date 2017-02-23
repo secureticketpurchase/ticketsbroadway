@@ -90,19 +90,6 @@ get_header();
 								Ranges: []
 							};
 
-							// create array to hold original filters, to be used when resetting a single filter
-							var defaultFilters = {
-								Days: [],
-								Categories: [],
-								Shows: [],
-								Months: [],
-								Venues: [],
-								Times: [],
-								Cities: [],
-								Dates: [],
-								Ranges: []
-							};
-
 							var offset = 0;
 							var numResults = 25;
 							var toAdd = 25; // how many results get added per click?
@@ -318,26 +305,13 @@ get_header();
 								console.log(toPass);
 								$.post( ticket_ajax.ajaxurl, toPass ).done( function(res){
 									//console.log(res);
-									if ( result != "" )
+									//if ( result != "" )
 									result = res;
 									//console.log(result);
 									$("#stache-holder").html(template( 
 											{theResult:result, theOffset:offset}
 										));
 									populateFilters( result );
-
-									// create array to hold original filters, to be used when resetting a single filter
-									defaultFilters = {
-										Days: filters.Days,
-										Categories: filters.Categories,
-										Shows: filters.Shows,
-										Months: filters.Months,
-										Venues: filters.Venues,
-										Times: filters.Times,
-										Cities: filters.Cities,
-										Dates: filters.Dates,
-										Ranges: filters.Ranges
-									};
 
 									$("#filter-holder").append(filterTemplate( {filters:filters} ) );
 
