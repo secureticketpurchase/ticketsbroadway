@@ -542,6 +542,24 @@ function build_event_tbl() {
     PRIMARY KEY  (id)
   ) $charset_collate;";
   dbDelta( $categorySql );
+
+  $searched_terms_name = $wpdb->prefix . "searched_terms";
+  $searchedSql = "CREATE TABLE $searched_terms_name (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    term text,
+    num_searched mediumint(9) DEFAULT 1,
+    PRIMARY KEY  (id)
+  ) $charset_collate;";
+  dbDelta( $searchedSql );
+
+  $cached_results_name = $wpdb->prefix . "cached_results";
+  $cachedSql = "CREATE TABLE $cached_results_name (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    term text,
+    result text,
+    PRIMARY KEY  (id)
+  ) $charset_collate;";
+  dbDelta( $cachedSql );
 }
 
 // Let's create our Tickets Broadway specific theme options
@@ -1201,6 +1219,7 @@ function getEventResults( ) {
   //$toSearch = get_query_var( 'tosearch' );
   $toSearch = $_POST['data']['tosearch'];
   $params[ 'searchTerms' ] = $toSearch;
+
 
   // account for no search term or a single result
 

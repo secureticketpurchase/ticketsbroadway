@@ -43,6 +43,31 @@ get_header();
 							$catArray[$cat->id]->name = ucfirst( strtolower($cat->name) );
 						}
 
+						// first, search for the searched term in the DB, either add or increment
+						$searched_terms_table = $wpdb->prefix . "searched_terms";
+						$term_query = "SELECT id FROM $searched_terms_table WHERE term = '" . $search . "'";
+						echo $term_query;
+						$term_db_id = $wpdb->get_col($term_query);
+
+						printDat( $term_db_id );
+
+						if ( isset($term_db_id[0]) ) {
+							$query = "UPDATE $searched_terms_table SET num_searched = num_searched+1 WHERE id = $term_db_id[0]";
+							$success = $wpdb->query($query);
+							if ($success)
+								echo "Updated successfully";
+							else
+								echo "failed update";
+							printDat( "Search term found!" );
+						} else {
+							$add_term_array = array( 'term' => $search );
+							$wpdb->insert(
+								$searched_terms_table,
+								$add_term_array
+							);
+							printDat( "Inserted ID = " . $wpdb->insert_id );
+						}
+
 						echo "<script>var catArray = " . json_encode( $catArray ) . ";</script>";
 						echo "<script>var tosearch = '" . $search . "';</script>";
 
