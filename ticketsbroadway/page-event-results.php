@@ -31,7 +31,7 @@ get_header();
 
 						<h1>Search Results for: <?php echo $search; ?></h1>
 
-						<script type="text/javascript">var result;</script>
+						<script type="text/javascript">var result = "";</script>
 
 						<?php
 
@@ -46,26 +46,26 @@ get_header();
 						// first, search for the searched term in the DB, either add or increment
 						$searched_terms_table = $wpdb->prefix . "searched_terms";
 						$term_query = "SELECT id FROM $searched_terms_table WHERE term = '" . $search . "'";
-						echo $term_query;
 						$term_db_id = $wpdb->get_col($term_query);
-
-						printDat( $term_db_id );
 
 						if ( isset($term_db_id[0]) ) {
 							$query = "UPDATE $searched_terms_table SET num_searched = num_searched+1 WHERE id = $term_db_id[0]";
 							$success = $wpdb->query($query);
-							if ($success)
-								echo "Updated successfully";
-							else
-								echo "failed update";
-							printDat( "Search term found!" );
 						} else {
 							$add_term_array = array( 'term' => $search );
 							$wpdb->insert(
 								$searched_terms_table,
 								$add_term_array
 							);
-							printDat( "Inserted ID = " . $wpdb->insert_id );
+						}
+
+						// try to grab a cached result...if there is one, set the JS var "result" equal to it
+						$cached_table = $wpdb->prefix . "cached_results";
+						$cache_query = "SELECT result FROM $cached_table WHERE term = $search";
+						$cache_res = $wpdb->get_col($cache_query);
+
+						if( isset($cache_res[0]) ) {
+							echo "<script>result = " . $cache_res[0] . ";</script>";
 						}
 
 						echo "<script>var catArray = " . json_encode( $catArray ) . ";</script>";
@@ -318,6 +318,7 @@ get_header();
 								console.log(toPass);
 								$.post( ticket_ajax.ajaxurl, toPass ).done( function(res){
 									//console.log(res);
+									if ( result != "" )
 									result = res;
 									//console.log(result);
 									$("#stache-holder").html(template( 

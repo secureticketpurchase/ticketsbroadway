@@ -556,7 +556,7 @@ function build_event_tbl() {
   $cachedSql = "CREATE TABLE $cached_results_name (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
     term text,
-    result text,
+    result blob,
     PRIMARY KEY  (id)
   ) $charset_collate;";
   dbDelta( $cachedSql );
