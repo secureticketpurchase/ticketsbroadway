@@ -1,4 +1,5 @@
 <?php
+set_time_limit(0);
 /**
  * The template for displaying all pages.
  *
@@ -61,6 +62,42 @@
 			
 			// commence foreach loop, grabbing result sets for each term, and pushing them into the cache table
 			foreach( $toCache as $term ){
+
+				$params[ 'searchTerms' ] = $term;
+
+				$result = $client->__soapCall( 'SearchEvents', array( 'parameters' => $params ) );
+
+				if (is_soap_fault($result))
+				{
+					echo '<h2>Fault</h2><pre>';
+					print_r($result);
+					echo '</pre>';
+				} else {
+					echo "<h1>$term</h1>";
+					printDat($result->SearchEventsResult->Event);
+				}
+
+				$toInsert = array_slice( $result->SearchEventsResult->Event, 0, 25 );
+				$encodedRes = json_encode($toInsert);
+				echo "<h1>toInsert</h1>";
+				printDat($encodedRes);
+				// build query to push result set into DB
+				$insertArgs = array(
+						"term"	=> $term,
+						"result"=> $encodedRes
+					);
+				$wpdb->insert( $cache_table, $insertArgs );
+
+				$insertedID = $wpdb->insert_id;
+
+				$insertedResult = $wpdb->get_col( "SELECT result FROM $cache_table WHERE id = $insertedID");
+				printDat($insertedResult);
+			}
+
+			$autoCache[] = "chicago";
+			$autoCache[] = "vegas";
+
+			foreach( $autoCache as $term ){
 
 				$params[ 'searchTerms' ] = $term;
 
