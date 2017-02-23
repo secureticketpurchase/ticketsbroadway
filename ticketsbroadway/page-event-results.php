@@ -342,6 +342,7 @@ get_header();
 										}
 									} else {
 										result = res;
+										populateFilters( result );
 										$("#filter-holder").append(filterTemplate( {filters:filters} ) );
 
 										hideFilters();
