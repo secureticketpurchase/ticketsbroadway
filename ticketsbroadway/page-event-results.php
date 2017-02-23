@@ -79,6 +79,8 @@ get_header();
 							};
 
 							var offset = 0;
+							var numResults = 25;
+							var toAdd = 25; // how many results get added per click?
 							var result;
 
 
@@ -151,7 +153,7 @@ get_header();
 								// Javascript for adding "show more" button and functionality
 								$('.filter-ul').each(function(index){
 								    var max = 2;
-								    if ($(this).find('li.filter-item').length > max) {
+								    if ($(this).find('li.filter-item').length > max+1) {
 
 								        $(this).find('li.filter-item:gt('+max+')').hide();
 
@@ -236,14 +238,26 @@ get_header();
 							}
 
 							function doPagination(res) {
-								$("#pagination-holder").html(function() {
-									var numPages = Math.floor(res.length / 3);
-									console.log(numPages);
-
-									/*if ( numPages > 1 ) {
-
-									}*/
-								});
+								console.log("Paginating!", res);
+								console.log("result length is " + res.length)
+								if( res.length > numResults ) {
+									// variable to hold the button we'll be adding
+									var addResults = $("<div>Show More</div>");
+									addResults.attr("data-offset",offset);
+									addResults.click( function() {
+										numResults += toAdd;
+										$("#stache-holder").html(template(
+											{
+												theResult:res,
+												theOffset:offset
+											}
+										));
+										doPagination(res);
+									});
+									$('#pagination-holder').html(addResults);
+								} else {
+									$("#pagination-holder").html('');
+								}
 							}
 
 							function doDateRange() {
@@ -262,11 +276,10 @@ get_header();
 										));
 									$("#filter-holder").html(filterTemplate( {filters:filters} ) );
 									hideFilters();
-
+									doPagination(filteredResults);
 									
 									// register begin and end date pickers
 									$( addPickerListeners() );
-									$( doPagination(filteredResults) );
 								}
 							}
 
@@ -301,12 +314,14 @@ get_header();
 									};
 
 									$("#filter-holder").append(filterTemplate( {filters:filters} ) );
+
 									hideFilters();
+									doPagination(result);
 
 									if ( filters.Ranges.length > 0 ) {
 										// register begin and end date pickers
 										$( addPickerListeners() );
-										$( doPagination(result) );
+										//$( doPagination(result) );
 									}
 								});
 
@@ -333,7 +348,7 @@ get_header();
 							// pagination helper
 							Handlebars.registerHelper( "numResults", function( arrEvents, offset ) {
 								offset = offset === undefined ? 0 : offset;
-								return arrEvents.length == 0 ? null : arrEvents.slice(offset, offset + 25);
+								return arrEvents.length == 0 ? null : arrEvents.slice(offset, offset + numResults);
 								return arrEvents;
 							} );
 
@@ -429,10 +444,11 @@ get_header();
 												theOffset:offset
 											}
 										));
+							doPagination(result);
 							if ( filters.Ranges.length > 0 ) {
 								// register begin and end date pickers
 								$( addPickerListeners() );
-								$( doPagination(result) );
+								//$( doPagination(result) );
 							}
 
 							
@@ -445,10 +461,12 @@ get_header();
 								var name = $(e).data("name");
 								var data = $(e).data("value");
 								var filteredResults;
+								numResults = toAdd;
 
 								if( data == "all") {
 									populateFilters(result);
 									filteredResults = result.filter(filterResults);
+									console.log("all filtered results is",filteredResults);
 								} else {
 									//select filter array to change
 									switch(name) {
@@ -487,7 +505,7 @@ get_header();
 											console.log( "filtered Dates is " , filters.Dates );
 									}
 
-									var filteredResults = result.filter(filterResults);
+									filteredResults = result.filter(filterResults);
 									populateFilters(filteredResults);
 
 								}
@@ -497,10 +515,10 @@ get_header();
 									));
 								$("#filter-holder").html(filterTemplate( {filters:filters} ) );
 								hideFilters();
+								doPagination(filteredResults)
 								if ( filters.Ranges.length > 0 ) {
 									// register begin and end date pickers
 									$( addPickerListeners() );
-									$( doPagination(filteredResults) );
 								}
 							}
 
