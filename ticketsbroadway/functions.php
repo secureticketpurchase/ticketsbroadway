@@ -1194,7 +1194,7 @@ function camelCase($str, array $noStrip = [])
 
 function tickets_enqueue_scripts(){
   wp_enqueue_script( 'ticket-script', get_template_directory_uri() . '/library/js/tb-scripts.js' );
-  wp_enqueue_script( 'ticket-handlebars', get_template_directory_uri() . '/library/js/handlebars.js' );
+  //wp_enqueue_script( 'ticket-handlebars', get_template_directory_uri() . '/library/js/handlebars.js' );
   wp_localize_script( 'ticket-script', 'ticket_ajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 }
 

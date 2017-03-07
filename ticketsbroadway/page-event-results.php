@@ -16,6 +16,7 @@ get_header();
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.27.1/date_fns.min.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/library/js/jquery-ui.min.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/library/js/handlebars.js"></script>
 
 			<div id="content" class="event-result">
 
