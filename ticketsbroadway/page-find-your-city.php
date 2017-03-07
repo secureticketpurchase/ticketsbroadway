@@ -2132,8 +2132,9 @@
 										foreach( $cities as $city ) {
 											$daState = get_post_meta( $city->ID, 'state', true );
 											if ( $daState == $state ) {
-												$daLink = get_permalink( $city );
-												echo "<li><a href='$daLink'>$city->post_title</a></li>";
+												/*$daLink = get_permalink( $city );
+												echo "<li><a href='$daLink'>$city->post_title</a></li>";*/
+												echo "<li><a href='" . site_url() . "/event-results/?tosearch=" . $city->post_name . "'>$city->post_title</a></li>";
 											}
 										}
 										echo "</ul>";
