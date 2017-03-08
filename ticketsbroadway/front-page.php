@@ -186,7 +186,7 @@
 
 									echo "<span class='top-seller-poster dropshadow'>";
 									echo "<a href='" . get_the_permalink( $post->ID ) . "'>";
-									echo the_post_thumbnail( 'full' );
+									echo the_post_thumbnail( 'medium' );
 									echo "</a></span>";
 
 								endwhile; endif;
