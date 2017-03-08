@@ -1219,6 +1219,7 @@ function getEventResults( ) {
   //$toSearch = get_query_var( 'tosearch' );
   $toSearch = $_POST['data']['tosearch'];
   $params[ 'searchTerms' ] = $toSearch;
+  $params[ 'whereClause' ] = 'ParentCategoryID == 3';
 
 
   // account for no search term or a single result
