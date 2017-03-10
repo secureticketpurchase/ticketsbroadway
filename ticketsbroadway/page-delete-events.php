@@ -64,6 +64,7 @@ set_time_limit(0);
 			foreach( $toCache as $term ){
 
 				$params[ 'searchTerms' ] = $term;
+				$params[ 'whereClause' ] = 'ParentCategoryID == 3';
 
 				$result = $client->__soapCall( 'SearchEvents', array( 'parameters' => $params ) );
 
@@ -101,6 +102,7 @@ set_time_limit(0);
 			foreach( $autoCache as $term ){
 
 				$params[ 'searchTerms' ] = $term;
+				$params[ 'whereClause' ] = 'ParentCategoryID == 3';
 
 				$result = $client->__soapCall( 'SearchEvents', array( 'parameters' => $params ) );
 
