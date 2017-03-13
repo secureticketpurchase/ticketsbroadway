@@ -34,23 +34,6 @@
 		<?php wp_head(); ?>
 		<?php // end of wordpress head ?>
 
-		<?php
-		// ping the table predictive_terms, spit out an array of terms for javascript to use
-		global $wpdb;
-		$table = $wpdb->prefix . "predictive_terms";
-
-		$terms = $wpdb->get_col( "SELECT term FROM $table" );
-		?>
-		<script>
-		var terms = <?php echo json_encode($terms); ?>;
-
-		$( function() {
-			$( '#tosearch' ).autocomplete({
-				source: terms
-			});
-		});
-		</script>
-
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
