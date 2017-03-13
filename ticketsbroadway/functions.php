@@ -567,7 +567,7 @@ function build_event_tbl() {
     term text,
     PRIMARY KEY  (id)
   ) $charset_collate;";
-  dbDelta( $cachedSql );
+  dbDelta( $predictiveSql );
 }
 
 // Let's create our Tickets Broadway specific theme options

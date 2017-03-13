@@ -90,9 +90,6 @@ set_time_limit(0);
 				$wpdb->insert( $cache_table, $insertArgs );
 
 				$insertedID = $wpdb->insert_id;
-
-				$insertedResult = $wpdb->get_col( "SELECT result FROM $cache_table WHERE id = $insertedID");
-				printDat($insertedResult);
 			}
 
 			$autoCache[] = "chicago";
@@ -128,9 +125,6 @@ set_time_limit(0);
 				$wpdb->insert( $cache_table, $insertArgs );
 
 				$insertedID = $wpdb->insert_id;
-
-				$insertedResult = $wpdb->get_col( "SELECT result FROM $cache_table WHERE id = $insertedID");
-				printDat($insertedResult);
 			}
 
 			?>
