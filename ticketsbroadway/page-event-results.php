@@ -323,6 +323,7 @@ get_header();
 
 									//console.log(res);
 									if ( result == "" ) {
+										console.log( "result is ",res);
 										result = res;
 										//result = res;
 										$("#stache-holder").html(template( 
