@@ -1255,7 +1255,7 @@ function getEventResults( ) {
 
     //return $result->SearchEventsResult->Event;
     header('Content-type: application/json');
-    echo json_encode( $result->SearchEventsResult->Event );
+    echo json_encode( $eventResults );
     die();
 }
 add_action( "wp_ajax_nopriv_get_event_results", "getEventResults" );
