@@ -560,6 +560,14 @@ function build_event_tbl() {
     PRIMARY KEY  (id)
   ) $charset_collate;";
   dbDelta( $cachedSql );
+
+  $predictive_name = $wpdb->prefix . "predictive_terms";
+  $predictiveSql = "CREATE TABLE $predictive_name (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    term text,
+    PRIMARY KEY  (id)
+  ) $charset_collate;";
+  dbDelta( $predictiveSql );
 }
 
 // Let's create our Tickets Broadway specific theme options
@@ -1193,6 +1201,7 @@ function camelCase($str, array $noStrip = [])
 }
 
 function tickets_enqueue_scripts(){
+  wp_enqueue_script( 'ticket-jquery-ui', get_template_directory_uri() . '/library/js/jquery-ui.min.js' );
   wp_enqueue_script( 'ticket-script', get_template_directory_uri() . '/library/js/tb-scripts.min.js' );
   wp_enqueue_script( 'ticket-handlebars', get_template_directory_uri() . '/library/js/handlebars.min.js' );
   wp_localize_script( 'ticket-script', 'ticket_ajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
