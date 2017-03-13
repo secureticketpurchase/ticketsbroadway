@@ -1242,6 +1242,13 @@ function getEventResults( ) {
       echo '</pre>';
     }
 
+    $eventResults  = $result->SearchEventResult->Event;
+
+    foreach( $eventResults as $event ) {
+      str_replace( "'", "&#39", $event->Name );
+      str_replace( '"', "&#34", $event->Name );
+    }
+
     // find something like handlebars to manipulate with javascript
     // use Javascript "map" function to pop out arrays
     //echo "<script>result = " . json_encode( $result->SearchEventsResult->Event ) . ";</script>";
