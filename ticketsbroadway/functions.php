@@ -1242,7 +1242,9 @@ function getEventResults( ) {
       echo '</pre>';
     }
 
-    $eventResults  = $result->SearchEventResult->Event;
+    $eventResults  = $result->SearchEventsResult->Event;
+
+    //printDat( $eventResults );
 
     foreach( $eventResults as $event ) {
       str_replace( "'", "&#39", $event->Name );
@@ -1255,6 +1257,7 @@ function getEventResults( ) {
 
     //return $result->SearchEventsResult->Event;
     header('Content-type: application/json');
+    //echo json_encode( $result->SearchEventsResult->Event );
     echo json_encode( $eventResults );
     die();
 }
