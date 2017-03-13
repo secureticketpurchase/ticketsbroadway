@@ -419,7 +419,7 @@ get_header();
 									html += "<input type='text' id='beginDatePicker' placeholder='from' /><br />";
 									html += "<input type='text' id='endDatePicker' placeholder='to' />";
 								} else {
-									html += "<li class='filter-item' data-value='" + theFilter + "' data-name='" + filterName + "' onclick='applyFilters(this)'>" + theFilter + "</li>";
+									html += '<li class="filter-item" data-value="' + theFilter + '" data-name="' + filterName + '" onclick="applyFilters(this)">' + theFilter + '</li>';
 								}
 								return new Handlebars.SafeString( html );
 							});
