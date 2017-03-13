@@ -110,16 +110,17 @@ class TicketNetworkConnection {
 
 		$params = array();
 		$params[ 'websiteConfigID' ] = WEB_CONF_ID;
+		$params[ 'parentCategoryID' ] = 3;
 
-		$result = $this->client->__soapCall( 'GetEventPerformers', array( 'parameters' => $params ) ) ;
+		$result = $this->client->__soapCall( 'GetPerformerByCategory', array( 'parameters' => $params ) ) ;
 
-		$performerArray = $result->GetEventPerformersResult->EventPerformer;
+		$performerArray = $result->GetPerformerByCategoryResult->Performer;
 
 		$uniquePerformers = array();
 
 		foreach ( $performerArray as $performer ) {
-			if(!isset($uniquePerformers[$performer->PerformerID])){
-				$uniquePerformers[$performer->PerformerID] = $performer->PerformerName;
+			if(!isset($uniquePerformers[$performer->ID])){
+				$uniquePerformers[$performer->ID] = $performer->Description;
 			}
 		}
 
