@@ -560,6 +560,14 @@ function build_event_tbl() {
     PRIMARY KEY  (id)
   ) $charset_collate;";
   dbDelta( $cachedSql );
+
+  $predictive_name = $wpdb->prefix . "predictive_terms";
+  $predictiveSql = "CREATE TABLE $predictive_name (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    term text,
+    PRIMARY KEY  (id)
+  ) $charset_collate;";
+  dbDelta( $cachedSql );
 }
 
 // Let's create our Tickets Broadway specific theme options
