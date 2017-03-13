@@ -52,7 +52,22 @@
 
 		</div>
 
-		<?php // all js scripts are loaded in library/bones.php ?>
+		<?php
+		// ping the table predictive_terms, spit out an array of terms for javascript to use
+		global $wpdb;
+		$table = $wpdb->prefix . "predictive_terms";
+
+		$terms = $wpdb->get_col( "SELECT term FROM $table" );
+		?>
+		<script>
+		var terms = <?php echo json_encode($terms); ?>;
+
+		$( function() {
+			jQuery( '#tosearch' ).autocomplete({
+				source: terms
+			});
+		});
+		</script>
 		<?php wp_footer(); ?>
 
 	</body>

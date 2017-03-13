@@ -64,6 +64,7 @@ set_time_limit(0);
 			foreach( $toCache as $term ){
 
 				$params[ 'searchTerms' ] = $term;
+				$params[ 'whereClause' ] = 'ParentCategoryID == 3';
 
 				$result = $client->__soapCall( 'SearchEvents', array( 'parameters' => $params ) );
 
@@ -89,9 +90,6 @@ set_time_limit(0);
 				$wpdb->insert( $cache_table, $insertArgs );
 
 				$insertedID = $wpdb->insert_id;
-
-				$insertedResult = $wpdb->get_col( "SELECT result FROM $cache_table WHERE id = $insertedID");
-				printDat($insertedResult);
 			}
 
 			$autoCache[] = "chicago";
@@ -101,6 +99,7 @@ set_time_limit(0);
 			foreach( $autoCache as $term ){
 
 				$params[ 'searchTerms' ] = $term;
+				$params[ 'whereClause' ] = 'ParentCategoryID == 3';
 
 				$result = $client->__soapCall( 'SearchEvents', array( 'parameters' => $params ) );
 
@@ -126,9 +125,6 @@ set_time_limit(0);
 				$wpdb->insert( $cache_table, $insertArgs );
 
 				$insertedID = $wpdb->insert_id;
-
-				$insertedResult = $wpdb->get_col( "SELECT result FROM $cache_table WHERE id = $insertedID");
-				printDat($insertedResult);
 			}
 
 			?>

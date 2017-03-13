@@ -20,12 +20,14 @@
 			var fill;
 			var pill;
 			$('g').mouseover(function(){
+				var toFill = false;
 				var state = $(this).attr('id');
 				pill = $(this).attr('fill');
-				$(this).attr('fill','#CC6600');
 				var pos = $(this).offset();
-				console.log(pos);
-				loop_states(state,pos);
+				toFill = loop_states(state,pos);
+				if ( toFill == true ) {
+					$(this).attr('fill','#CC6600');
+				}
 				//console.log(state);
 			});
 
@@ -41,11 +43,14 @@
 			});
 
 			$('path').mouseover(function(){
+				var toFill = false;
 				var state = $(this).attr('id');
 				fill = $(this).attr('fill');
-				$(this).attr('fill','#CC6600');
 				var pos = $(this).offset();
-				loop_states(state,pos);
+				toFill = loop_states(state,pos);
+				if ( toFill == true ) {
+					$(this).attr('fill','#CC6600');
+				}
 				//console.log(state);
 			});
 
@@ -68,6 +73,7 @@
 				//console.log(state);
 				var section = $('.state-list');
 				var group = $(section).children().toArray();
+				var toReturn = false;
 				//var result = $('.state-list').find("[data-state='" + state + "']");
 				$( ".state-list div" ).each(function( index ) {
 					var result = $(this).attr('data-state');
@@ -78,14 +84,15 @@
 						$('#cities').html(content);
 						$('#cities').css('display','block');
 						$('#cities').css({top: pos.top, left: pos.left, position:'absolute'});
+						toReturn = true;
 						/*if(state=="newYork") {
 							$('#cities').css({top: 500, left: 900, position:'absolute'});
 						} else {
 							$('#cities').css({top: pos.top, left: pos.left, position:'absolute'});
 						}*/
-					} 
+					}
 				});
-
+				return toReturn;
 			}
 		});
 	</script>
