@@ -1246,9 +1246,11 @@ function getEventResults( ) {
 
     //printDat( $eventResults );
 
+    // replace single and double quotes with &apos; and &quot; to account for shows with those characters in their names
     foreach( $eventResults as $event ) {
-      str_replace( "'", "&#39", $event->Name );
-      str_replace( '"', "&#34", $event->Name );
+      //str_replace( "'", "&#39", $event->Name );
+      str_replace( "'", "&apos;", $event->Name );
+      str_replace( '"', "&quot;", $event->Name );
     }
 
     // find something like handlebars to manipulate with javascript
