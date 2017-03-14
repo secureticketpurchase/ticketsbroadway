@@ -118,11 +118,11 @@ $timeBegun = new DateTime();
 
 				$result = $wpdb->delete( $wpdb->prefix . 'performers', array( "id" => $id ) );
 
-				$cntr++;
+				//$cntr++;
 
-				if ( $cntr > 24 ) {
+				/*if ( $cntr > 24 ) {
 					break;
-				}
+				}*/
 			}
 
 			if ( !empty($newShows) ) {
