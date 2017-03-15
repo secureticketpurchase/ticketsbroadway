@@ -248,7 +248,7 @@
 						</div>
 
 						<div id="home-bottom-banner">
-							<a href="<?php echo esc_url( home_url( '/' ) ) . 'about'; ?>"><img src="<?php echo get_template_directory_uri(); ?>/library/assets/homepage-icons.png" style="width:100%;" /></a>
+							<a href="<?php echo esc_url( home_url( '/' ) ) . 'about'; ?>"><img src="<?php echo get_template_directory_uri(); ?>/library/assets/homepage-icons.jpg" style="width:100%;" /></a>
 						</div>
 
 				</div>
