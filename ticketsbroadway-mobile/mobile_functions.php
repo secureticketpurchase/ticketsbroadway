@@ -37,6 +37,11 @@ function get_home_slider_alt($count = 4, $offset = 0){
         'no_found_rows'	=> true,
         'offset'        => $offset
     );
+
+    // check if city option is selected.  If so, use its "shows" post meta array to add that limit to the query
+    if ( MICRO_SHOWS != "" ) {
+        $args['post__in'] = theme_arr("shows");
+    }
     $query = new WP_Query( $args );
     return $query;
 }

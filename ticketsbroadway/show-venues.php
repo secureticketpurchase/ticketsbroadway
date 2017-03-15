@@ -12,6 +12,11 @@ $args = array (
 		'no_found_rows'		=> true
 	);
 
+// check if city option is selected.  If so, use its "shows" post meta array to add that limit to the query
+if ( MICRO_SHOWS != "" ) {
+	$args['post__in'] = theme_arr("venues");
+}
+
 $venues = get_posts( $args );
 
 /*echo "<pre>";
