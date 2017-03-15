@@ -678,12 +678,12 @@ function microsite_city_callback() {
   // Get a list of cities currently in DB
   global $wpdb;
 
-  $results = $wpdb->get_results( "select post_title from $wpdb->posts where post_type = 'city'", ARRAY_A );
+  $results = $wpdb->get_results( "select post_title, ID from $wpdb->posts where post_type = 'city'", ARRAY_A );
 
   $html = '<select id="city_select" name="tb_theme_options[city]">';
-  $html .= '<option value="none" ' . selected( $options['city'], '', false ) . '>No City</option>';
+  $html .= '<option value="" ' . selected( $options['city'], '', false ) . '>No City</option>';
   foreach( $results as $result ) {
-    $html .= '<option value="' . $result["post_title"] . '" ' . selected( $options['city'], $result["post_title"], false ) . '>' . $result["post_title"] . '</option>';
+    $html .= '<option value="' . $result["ID"] . '" ' . selected( $options['city'], $result["ID"], false ) . '>' . $result["post_title"] . '</option>';
   }
   $html .= '</select>';
 
