@@ -22,6 +22,13 @@ get_header();
 				<div id="inner-content" class="wrap cf">
 
 					<div class="sidebar events-search d-1of7 t-1of3">
+						<div class="collapse-button">Refine Results</div>
+						<script>
+						// function to hide or display filter-holder on click
+						$(function() {
+							$(".collapse-button").click(function(){ $("#filter-holder").slideToggle(700); });
+						});
+						</script>
 						<div id="filter-holder"></div>
 					</div>
 

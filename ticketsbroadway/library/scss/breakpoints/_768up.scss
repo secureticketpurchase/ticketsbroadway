@@ -309,6 +309,9 @@ SIDEBARS & ASIDES
 		padding-right:0px;
 		padding-left:20px;
 		font-size:14px;
+		.collapse-button {
+			display: none;
+		}
 		li{
 			cursor:pointer;
 			&:before{

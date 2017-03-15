@@ -36,7 +36,7 @@ footer.footer{
 }
 </style>
 
-			<div id="content">
+			<div id="content" class="choose-ticket">
 
 				<div id="inner-content" class="wrap cf">
 
