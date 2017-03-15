@@ -1386,7 +1386,7 @@ table#events-calendar {
 }
 
 /*********************
-GENERAL STYLES
+BLOG STYLES
 *********************/
 
 .blog {
@@ -1485,5 +1485,12 @@ GENERAL STYLES
 
 
 /*********************
-EVENT RESULT STYLES
+CHOOSE TICKET STYLES
 *********************/
+
+.choose-ticket {
+	
+	.container {
+		height: 700px;
+	}
+}
