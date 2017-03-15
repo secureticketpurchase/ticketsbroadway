@@ -137,7 +137,7 @@
 
                             	// check if city option is selected.  If so, use its "shows" post meta array to add that limit to the query
                             	if ( MICRO_SHOWS != "" ) {
-                            		$args['post__in'] = return_shows();
+                            		$args['post__in'] = theme_arr("shows");
                             	}
 
                             	$shows = get_posts( $args );

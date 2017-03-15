@@ -18,13 +18,25 @@ $micro_venues = array();
 if ( $theme_city != "" ) {
   $micro_shows = get_post_meta( $theme_city, "shows", true );
   define("MICRO_SHOWS", implode(',',$micro_shows) );
-  //printDat( $micro_shows );
+  //grab City name, needed for some filtering, and grabbing venues
+  define("MICRO_CITY", get_the_title($theme_city) );
+
+  // use $wpdb to grab an array of all post_IDs in postmeta containing a matching City name (this will only be venues)
+  global $wpdb;
+  $query = "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = 'city' AND meta_value = '" . $theme_city . "'";
+  $vIDs = $wpdb->get_col( $query );
+  define("MICRO_VENUES", implode(',', $vIDs));
 } else {
   define("MICRO_SHOWS", "");
+  define("MICRO_CITY", "");
 }
 
-function return_shows() {
-  return explode(",", MICRO_SHOWS);
+function theme_arr( $type ) {
+  if ( $type == "shows" ) {
+    return explode(",", MICRO_SHOWS);
+  } else if ( $type == "venues" ) {
+    return explode(",", MICRO_VENUES);
+  }
 }
 
 
@@ -798,6 +810,11 @@ function display_shows ( $postID, $numPosts = 4, $topSeller = false, $offset = 0
     $args[ 'meta_key' ] = 'top_seller';
     $args[ 'meta_value' ] = 1;
   }
+  // check if city option is selected.  If so, use its "shows" post meta array to add that limit to the query
+  if ( MICRO_SHOWS != "" ) {
+    $args['post__in'] = return_shows();
+  }
+
   $shows = get_posts( $args );
 
   if ( $mobile ) {
@@ -925,6 +942,11 @@ function getShowEvents( $showID, $venueWPID='', $start, $end ) {
   global $wpdb;
   // Put together the piece of the query that filters over performer ID
   $query = "SELECT * FROM " . $wpdb->prefix . "events WHERE performer = " . $perfID;
+
+  // check if city micro site option was selected, add additional parameter if so
+  if ( MICRO_CITY != "" ) {
+    $query .= " AND city = '" . MICRO_CITY . "'";
+  }
 
   // confirm whether venueID is set, if so, grab its API ID and add an additional filter to the query
   if ( $venueWPID != '' ) {
