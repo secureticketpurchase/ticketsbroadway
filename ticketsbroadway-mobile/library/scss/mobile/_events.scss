@@ -1,18 +1,36 @@
 #content.event-result{
+    #inner-content {
+        display: block;
+    }
+    #filter-holder {
+        display: none;
+        width: 100%;
+    }
     .events-search{
         display:block;
-        width:40%;
+        width:100%;
         font-size:13px;
+
+        .collapse-button {
+            font-weight: bold;
+            font-size: 16px;
+            margin: 10px auto 0px auto;
+        }
     }
     .body-content{
-        width:60%;
+        width:100%;
         #events-results-table{
             tr#header{
                     display:none;
                 }
             td{
-                display:block;
-                
+                display:inline-block;
+                width: 50%;
+                padding-top: 15px;
+
+                .buy-tickets {
+                    padding: 5px 10px;
+                }
             }
             
         }
