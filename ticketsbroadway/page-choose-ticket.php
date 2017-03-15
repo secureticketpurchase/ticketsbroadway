@@ -53,7 +53,7 @@ footer.footer{
 					var userinformation = '&uid=148&una=howardschwartz&uem=hschwartz@secureticketpurchase.com&ba1=&ba2=&bci=&bsa=&bco=&bpo=&bph=';
 					</script>
 
-					<div class="container" style="height:700px;">
+					<div class="container" >
 						<script type="text/javascript" src="https://mapwidget2.seatics.com/js?eventId=<?php echo $eventID; ?>&websiteConfigId=20732">
 
 					</script>
