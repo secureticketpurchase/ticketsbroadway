@@ -8,6 +8,26 @@ just edit things like thumbnail sizes, header images,
 sidebars, comments, etc.
 */
 
+
+// grab the theme setting corresponding to the city microsite option
+$theme_options = get_option( "tb_theme_options" );
+$theme_city = $theme_options["city"];
+$micro_venues = array();
+
+// Now, grab array of shows and venues in this city, to be used for future filtering
+if ( $theme_city != "" ) {
+  $micro_shows = get_post_meta( $theme_city, "shows", true );
+  define("MICRO_SHOWS", implode(',',$micro_shows) );
+  //printDat( $micro_shows );
+} else {
+  define("MICRO_SHOWS", "");
+}
+
+function return_shows() {
+  return explode(",", MICRO_SHOWS);
+}
+
+
 // LOAD BONES CORE (if you remove this, the theme will break)
 require_once( 'library/bones.php' );
 

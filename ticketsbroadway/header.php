@@ -50,20 +50,6 @@
 
 	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
-		<?php
-		// grab the theme setting corresponding to the city microsite option
-		$theme_options = get_option( "tb_theme_options" );
-		$theme_city = $theme_options["city"];
-		$micro_shows = array();
-		$micro_venues = array();
-
-		// Now, grab array of shows and venues in this city, to be used for future filtering
-		if ( $theme_city != "" ) {
-			$micro_shows = get_post_meta( $theme_city, "shows", true );
-			//printDat( $micro_shows );
-		}
-		?>
-
 		<div id="container">
 
 			<header class="header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
@@ -150,8 +136,8 @@
                             	);
 
                             	// check if city option is selected.  If so, use its "shows" post meta array to add that limit to the query
-                            	if ( isset($micro_shows[0]) ) {
-                            		$args['post__in'] = $micro_shows;
+                            	if ( MICRO_SHOWS != "" ) {
+                            		$args['post__in'] = return_shows();
                             	}
 
                             	$shows = get_posts( $args );
