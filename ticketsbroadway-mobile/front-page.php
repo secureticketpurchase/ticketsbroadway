@@ -45,7 +45,7 @@
 								// Commence the Loop!
 								if( $seller_query->have_posts() ) : while( $seller_query->have_posts() ) : $seller_query->the_post();
 
-									echo sprintf('<li class="top-seller"><a href="%s">%s</a><img src="%s" class="top-sller-arrow"></li>', get_the_permalink(), get_the_title(),  get_stylesheet_directory_uri().'/library/assets/mobile/arrow-button.png' );
+									echo sprintf('<a href="%s"><li class="top-seller">%s<img src="%s" class="top-sller-arrow"></li></a>', get_the_permalink(), get_the_title(),  get_stylesheet_directory_uri().'/library/assets/mobile/arrow-button.png' );
 
 								endwhile; endif;
                                 echo sprintf('<li class="top-seller-view-all"><a href="find-a-show">View All Shows</a></li>');
