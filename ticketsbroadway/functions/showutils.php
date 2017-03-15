@@ -9,6 +9,11 @@ function get_top_sellers($count = 12){
         'no_found_rows'	=> true
     );
 
+    // check if city option is selected.  If so, use its "shows" post meta array to add that limit to the query
+    if ( MICRO_SHOWS != "" ) {
+        $args['post__in'] = theme_arr("shows");
+    }
+
     $seller_query = new WP_Query( $args );
     return $seller_query;
 }

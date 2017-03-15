@@ -754,7 +754,7 @@ add_action( "admin_enqueue_scripts", "tb_options_enqueue_scripts" );
 
 /* Commence Template related functions!
 ------------------------------------------*/
-// function to build out a list of of shows using the standard "show preview" format
+// function to build out a list of shows using the standard "show preview" format
 function display_shows ( $postID, $numPosts = 4, $topSeller = false, $offset = 0, $mobile = false ) {
   // what parameters might we need?
 
@@ -1124,6 +1124,11 @@ function getShowResults() {
   }
   if( isset( $_POST['search_month'] ) && $_POST['search_month'] != 'none' ) {
     $months = explode( ',', $_POST['search_month'] );
+  }
+
+  global $theme_city;
+  if ( $theme_city != "" ) {
+    $city = $theme_city;
   }
   
   // Let's start populating the $args array for the query
