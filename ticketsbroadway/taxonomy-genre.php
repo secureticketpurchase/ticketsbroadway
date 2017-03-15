@@ -26,6 +26,8 @@
 
 							<?php endwhile; ?>
 
+								<?php bones_page_navi(); ?>
+
 							<?php else : ?>
 
 									<article id="post-not-found" class="hentry cf">
