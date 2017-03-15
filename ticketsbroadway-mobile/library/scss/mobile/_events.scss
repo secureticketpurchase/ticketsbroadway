@@ -37,9 +37,32 @@
     }
 }
 
+body.page-template-page-choose-ticket {
+    img {
+        display: none;
+    }
+
+    #inner-header {
+        img {
+            display: block;
+        }
+    }
+
+    .footer-main {
+        img {
+            display: block;
+        }
+    }
+}
+
 #content.choose-ticket {
     #inner-content {
         margin-top: 0px;
+
+        .container {
+            height: 100%;
+            margin-bottom: 225px;
+        }
     }
     .header-container {
         position: absolute;
