@@ -127,7 +127,7 @@ $timeBegun = new DateTime();
 
 			if ( !empty($newShows) ) {
 				// Commence logic to ship out a notification email to Howie containing a list of all newly added shows
-				$to = "john.parks@brafton.com";
+				$to = "hschwartz@secureticketpurchase.com";
 				$subject = "New shows added to ticketsbroadway.com";
 
 				$message = "<h1>Here's a list of shows recently added to ticketsbroadway.com</h1>";
@@ -139,7 +139,7 @@ $timeBegun = new DateTime();
 
 				$message .= "</ul>";
 
-				$header = "From:john.parks@brafton.com \r\n";
+				$header = "From:hschwartz@secureticketpurchase.com \r\n";
 				$header .= "MIME-Version: 1.0\r\n";
 				$header .= "Content-type: text/html\r\n";
 

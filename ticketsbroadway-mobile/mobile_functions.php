@@ -58,7 +58,7 @@ function mobile_handleCalendar($postId, $dates = null,$venueId = ""){
             $listings .= "<li class='individual-event' id='event-{$event->id}'>";
             $date = date('F d', strtotime($event->time));
             $time = date('g:ia', strtotime($event->time));
-            $purchase = site_url().'/?eventID='.$event->id;
+            $purchase = site_url().'/tickets/?eventID='.$event->id;
             $listings .= "<span class='date'>{$date}</span><span class='time'>{$time}</span><span class='buy-tickets'><a href='{$purchase}'>Buy Tickets</a></span>";
         }
     }
