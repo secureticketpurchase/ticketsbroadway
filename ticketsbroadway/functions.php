@@ -735,6 +735,8 @@ function banner_link_callback() {
 function microsite_city_callback() {
   $options = get_option( "tb_theme_options" );
 
+  switch_site();
+
   // Get a list of cities currently in DB
   global $wpdb;
 
@@ -748,6 +750,8 @@ function microsite_city_callback() {
   $html .= '</select>';
 
   echo $html;
+
+  revert_site();
 
 }
 
