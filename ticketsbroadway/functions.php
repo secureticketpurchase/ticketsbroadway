@@ -19,14 +19,14 @@ if ( is_main_site() ) {
 }
 
 // define some functions for switching to and from main site
-switch_site() {
+function switch_site() {
   // confirm whether this is the main site, if not switch over to it
   if ( MAIN_SITE != "" ) {
     switch_to_blog( MAIN_SITE );
   }
 }
 
-revert_site() {
+function revert_site() {
   // check if MAIN_SITE is defined (and this is thus not a main site), restore_current_blog if so
   if ( MAIN_SITE != "" ) {
     restore_current_blog();
