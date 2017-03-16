@@ -8,6 +8,15 @@ just edit things like thumbnail sizes, header images,
 sidebars, comments, etc.
 */
 
+// establish if this is a multisite, and whether it's the current blog
+if ( is_main_site() ) {
+  define("MAIN_SITE", "");
+} else {
+  // this is a multisite, and we're not in the main one
+  // define MAIN_SITE constant to be the site ID of the main site
+  global $current_site;
+  define("MAIN_SITE", $current_site->blog_id);
+}
 
 // grab the theme setting corresponding to the city microsite option
 $theme_options = get_option( "tb_theme_options" );

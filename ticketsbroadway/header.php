@@ -86,6 +86,12 @@
 						)); ?>
 
 						<?php
+						// for the populating of the two drop down menus, we need to reference the main site, if this isn't it
+						// confirm whether this is the main site, if not switch over to it
+						if ( MAIN_SITE != "" ) {
+							switch_to_blog( MAIN_SITE );
+						}
+
 			            // First, grab a list of Genres that have been cleared to appear in the dropdown menu
 			            $genreArgs = array(
 			                "taxonomy"		=>	"genre",
@@ -135,10 +141,22 @@
                             		'meta_value'	=> 1
                             	);
 
+                            	// temporarily restore to the current blog for the theme setting check
+                            	// check if MAIN_SITE is defined (and this is thus not a main site), restore_current_blog if so
+								if ( MAIN_SITE != "" ) {
+									restore_current_blog();
+								}
+
                             	// check if city option is selected.  If so, use its "shows" post meta array to add that limit to the query
                             	if ( MICRO_SHOWS != "" ) {
                             		$args['post__in'] = theme_arr("shows");
                             	}
+
+                            	// switch back to main site for the next chunk
+                            	// confirm whether this is the main site, if not switch over to it
+								if ( MAIN_SITE != "" ) {
+									switch_to_blog( MAIN_SITE );
+								}
 
                             	$shows = get_posts( $args );
 
@@ -185,6 +203,14 @@
 								?>
                         	</ul>
                         </div>
+
+                        <?php
+                        // We're near the end of the header...revert to current site, to prevent interfering with future queries
+                        // check if MAIN_SITE is defined (and this is thus not a main site), restore_current_blog if so
+						if ( MAIN_SITE != "" ) {
+							restore_current_blog();
+						}
+						?>
                         
 						<span class="top-social">
 							<a href="http://www.facebook.com/ticketsbroadway/" class="facebook-icon" target="_blank" ><img src="<?php echo get_template_directory_uri(); ?>/library/assets/icons/social/color/facebook.png" /></a>

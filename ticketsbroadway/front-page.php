@@ -6,7 +6,13 @@
 
 						<div id="home-page-slider">
 
-							<?php 
+							<?php
+
+							// from this point forward to the HoH is content pulled from the main site
+							// confirm whether this is the main site, if not switch over to it
+							if ( MAIN_SITE != "" ) {
+								switch_to_blog( MAIN_SITE );
+							}
 
 							$slider_query = get_home_slider();
 
@@ -173,10 +179,22 @@
 									'no_found_rows'	=> true
 								);
 
+								// revert to current site for theme check
+								// check if MAIN_SITE is defined (and this is thus not a main site), restore_current_blog if so
+								if ( MAIN_SITE != "" ) {
+									restore_current_blog();
+								}
+
 								// check if city option is selected.  If so, use its "shows" post meta array to add that limit to the query
                             	if ( MICRO_SHOWS != "" ) {
                             		$args['post__in'] = theme_arr("shows");
                             	}
+
+                            	// switch back to main site for next chunk
+                            	// confirm whether this is the main site, if not switch over to it
+								if ( MAIN_SITE != "" ) {
+									switch_to_blog( MAIN_SITE );
+								}
 
                             	//printDat($args);
 
@@ -198,6 +216,12 @@
 
 								endwhile; endif;
 
+								// Everything from here is directly related to the current, rather than main, site
+								// check if MAIN_SITE is defined (and this is thus not a main site), restore_current_blog if so
+								if ( MAIN_SITE != "" ) {
+									restore_current_blog();
+								}
+
 								echo "</div>";
 							?>
 
@@ -210,6 +234,24 @@
 								$banner_url = wp_get_attachment_url( $theme_options['banner_id'] );
 
 								$banner_link = $theme_options['banner_link'];
+
+								if ( $banner_url == false ) {
+									// temporarily switch to main site, grab banner and link, then switch back over
+									// confirm whether this is the main site, if not switch over to it
+									if ( MAIN_SITE != "" ) {
+										switch_to_blog( MAIN_SITE );
+									}
+
+									$theme_options = get_option( "tb_theme_options" );
+									$banner_url = wp_get_attachment_url( $theme_options['banner_id'] );
+									$banner_link = $theme_options['banner_link'];
+
+									// switch back to current site for the rest
+									// check if MAIN_SITE is defined (and this is thus not a main site), restore_current_blog if so
+									if ( MAIN_SITE != "" ) {
+										restore_current_blog();
+									}
+								}
 							?>
 							<a href="<?php echo $banner_link; ?>"><img src="<?php echo $banner_url; ?>" style="width:100%;"/></a>
 						</div>
