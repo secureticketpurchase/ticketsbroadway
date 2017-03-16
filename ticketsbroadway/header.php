@@ -87,10 +87,7 @@
 
 						<?php
 						// for the populating of the two drop down menus, we need to reference the main site, if this isn't it
-						// confirm whether this is the main site, if not switch over to it
-						if ( MAIN_SITE != "" ) {
-							switch_to_blog( MAIN_SITE );
-						}
+						switch_site();
 
 			            // First, grab a list of Genres that have been cleared to appear in the dropdown menu
 			            $genreArgs = array(
@@ -142,10 +139,7 @@
                             	);
 
                             	// temporarily restore to the current blog for the theme setting check
-                            	// check if MAIN_SITE is defined (and this is thus not a main site), restore_current_blog if so
-								if ( MAIN_SITE != "" ) {
-									restore_current_blog();
-								}
+                            	revert_site();
 
                             	// check if city option is selected.  If so, use its "shows" post meta array to add that limit to the query
                             	if ( MICRO_SHOWS != "" ) {
@@ -153,10 +147,7 @@
                             	}
 
                             	// switch back to main site for the next chunk
-                            	// confirm whether this is the main site, if not switch over to it
-								if ( MAIN_SITE != "" ) {
-									switch_to_blog( MAIN_SITE );
-								}
+                            	switch_site();
 
                             	$shows = get_posts( $args );
 
@@ -206,10 +197,7 @@
 
                         <?php
                         // We're near the end of the header...revert to current site, to prevent interfering with future queries
-                        // check if MAIN_SITE is defined (and this is thus not a main site), restore_current_blog if so
-						if ( MAIN_SITE != "" ) {
-							restore_current_blog();
-						}
+                        revert_site();
 						?>
                         
 						<span class="top-social">

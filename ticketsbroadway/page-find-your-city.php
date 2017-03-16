@@ -2111,6 +2111,7 @@
 
 								<section class="state-list">
 									<?php
+									switch_site();
 									// Get list of cities cleared to be displayed on this page
 									$args = array (
 										"post_type"		=> "city",
@@ -2147,6 +2148,7 @@
 										echo "</ul>";
 										echo "</div>";
 									}
+									revert_site();
 									?>
 								</section>
 

@@ -18,13 +18,30 @@ if ( is_main_site() ) {
   define("MAIN_SITE", $current_site->blog_id);
 }
 
+// define some functions for switching to and from main site
+switch_site() {
+  // confirm whether this is the main site, if not switch over to it
+  if ( MAIN_SITE != "" ) {
+    switch_to_blog( MAIN_SITE );
+  }
+}
+
+revert_site() {
+  // check if MAIN_SITE is defined (and this is thus not a main site), restore_current_blog if so
+  if ( MAIN_SITE != "" ) {
+    restore_current_blog();
+  }
+}
+
+
 // grab the theme setting corresponding to the city microsite option
 $theme_options = get_option( "tb_theme_options" );
 $theme_city = $theme_options["city"];
-$micro_venues = array();
 
 // Now, grab array of shows and venues in this city, to be used for future filtering
 if ( $theme_city != "" ) {
+  //switch to main site to grab these pieces
+  switch_site();
   $micro_shows = get_post_meta( $theme_city, "shows", true );
   define("MICRO_SHOWS", implode(',',$micro_shows) );
   //grab City name, needed for some filtering, and grabbing venues
@@ -34,6 +51,8 @@ if ( $theme_city != "" ) {
   global $wpdb;
   $query = "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = 'city' AND meta_value = '" . $theme_city . "'";
   $vIDs = $wpdb->get_col( $query );
+  // switch back to current site moving forward
+  revert_site();
   define("MICRO_VENUES", implode(',', $vIDs));
 } else {
   define("MICRO_SHOWS", "");
