@@ -8,6 +8,66 @@ just edit things like thumbnail sizes, header images,
 sidebars, comments, etc.
 */
 
+// establish if this is a multisite, and whether it's the current blog
+if ( is_main_site() ) {
+  define("MAIN_SITE", "");
+} else {
+  // this is a multisite, and we're not in the main one
+  // define MAIN_SITE constant to be the site ID of the main site
+  global $current_site;
+  define("MAIN_SITE", $current_site->blog_id);
+}
+
+// define some functions for switching to and from main site
+function switch_site() {
+  // confirm whether this is the main site, if not switch over to it
+  if ( MAIN_SITE != "" ) {
+    switch_to_blog( MAIN_SITE );
+  }
+}
+
+function revert_site() {
+  // check if MAIN_SITE is defined (and this is thus not a main site), restore_current_blog if so
+  if ( MAIN_SITE != "" ) {
+    restore_current_blog();
+  }
+}
+
+
+// grab the theme setting corresponding to the city microsite option
+$theme_options = get_option( "tb_theme_options" );
+$theme_city = $theme_options["city"];
+
+// Now, grab array of shows and venues in this city, to be used for future filtering
+if ( $theme_city != "" ) {
+  //switch to main site to grab these pieces
+  switch_site();
+  $micro_shows = get_post_meta( $theme_city, "shows", true );
+  define("MICRO_SHOWS", implode(',',$micro_shows) );
+  //grab City name, needed for some filtering, and grabbing venues
+  define("MICRO_CITY", get_the_title($theme_city) );
+
+  // use $wpdb to grab an array of all post_IDs in postmeta containing a matching City name (this will only be venues)
+  global $wpdb;
+  $query = "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = 'city' AND meta_value = '" . $theme_city . "'";
+  $vIDs = $wpdb->get_col( $query );
+  // switch back to current site moving forward
+  revert_site();
+  define("MICRO_VENUES", implode(',', $vIDs));
+} else {
+  define("MICRO_SHOWS", "");
+  define("MICRO_CITY", "");
+}
+
+function theme_arr( $type ) {
+  if ( $type == "shows" ) {
+    return explode(",", MICRO_SHOWS);
+  } else if ( $type == "venues" ) {
+    return explode(",", MICRO_VENUES);
+  }
+}
+
+
 // LOAD BONES CORE (if you remove this, the theme will break)
 require_once( 'library/bones.php' );
 
@@ -678,12 +738,12 @@ function microsite_city_callback() {
   // Get a list of cities currently in DB
   global $wpdb;
 
-  $results = $wpdb->get_results( "select post_title from $wpdb->posts where post_type = 'city'", ARRAY_A );
+  $results = $wpdb->get_results( "select post_title, ID from $wpdb->posts where post_type = 'city'", ARRAY_A );
 
   $html = '<select id="city_select" name="tb_theme_options[city]">';
-  $html .= '<option value="none" ' . selected( $options['city'], '', false ) . '>No City</option>';
+  $html .= '<option value="" ' . selected( $options['city'], '', false ) . '>No City</option>';
   foreach( $results as $result ) {
-    $html .= '<option value="' . $result["post_title"] . '" ' . selected( $options['city'], $result["post_title"], false ) . '>' . $result["post_title"] . '</option>';
+    $html .= '<option value="' . $result["ID"] . '" ' . selected( $options['city'], $result["ID"], false ) . '>' . $result["post_title"] . '</option>';
   }
   $html .= '</select>';
 
@@ -722,7 +782,7 @@ add_action( "admin_enqueue_scripts", "tb_options_enqueue_scripts" );
 
 /* Commence Template related functions!
 ------------------------------------------*/
-// function to build out a list of of shows using the standard "show preview" format
+// function to build out a list of shows using the standard "show preview" format
 function display_shows ( $postID, $numPosts = 4, $topSeller = false, $offset = 0, $mobile = false ) {
   // what parameters might we need?
 
@@ -778,6 +838,11 @@ function display_shows ( $postID, $numPosts = 4, $topSeller = false, $offset = 0
     $args[ 'meta_key' ] = 'top_seller';
     $args[ 'meta_value' ] = 1;
   }
+  // check if city option is selected.  If so, use its "shows" post meta array to add that limit to the query
+  if ( MICRO_SHOWS != "" ) {
+    $args['post__in'] = theme_arr("shows");
+  }
+
   $shows = get_posts( $args );
 
   if ( $mobile ) {
@@ -905,6 +970,11 @@ function getShowEvents( $showID, $venueWPID='', $start, $end ) {
   global $wpdb;
   // Put together the piece of the query that filters over performer ID
   $query = "SELECT * FROM " . $wpdb->prefix . "events WHERE performer = " . $perfID;
+
+  // check if city micro site option was selected, add additional parameter if so
+  if ( MICRO_CITY != "" ) {
+    $query .= " AND city = '" . MICRO_CITY . "'";
+  }
 
   // confirm whether venueID is set, if so, grab its API ID and add an additional filter to the query
   if ( $venueWPID != '' ) {
@@ -1082,6 +1152,11 @@ function getShowResults() {
   }
   if( isset( $_POST['search_month'] ) && $_POST['search_month'] != 'none' ) {
     $months = explode( ',', $_POST['search_month'] );
+  }
+
+  global $theme_city;
+  if ( $theme_city != "" ) {
+    $city = $theme_city;
   }
   
   // Let's start populating the $args array for the query

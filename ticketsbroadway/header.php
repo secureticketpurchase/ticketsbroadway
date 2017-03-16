@@ -86,6 +86,9 @@
 						)); ?>
 
 						<?php
+						// for the populating of the two drop down menus, we need to reference the main site, if this isn't it
+						switch_site();
+
 			            // First, grab a list of Genres that have been cleared to appear in the dropdown menu
 			            $genreArgs = array(
 			                "taxonomy"		=>	"genre",
@@ -134,6 +137,18 @@
                             		'meta_key'		=> 'nav_display',
                             		'meta_value'	=> 1
                             	);
+
+                            	// temporarily restore to the current blog for the theme setting check
+                            	revert_site();
+
+                            	// check if city option is selected.  If so, use its "shows" post meta array to add that limit to the query
+                            	if ( MICRO_SHOWS != "" ) {
+                            		$args['post__in'] = theme_arr("shows");
+                            	}
+
+                            	// switch back to main site for the next chunk
+                            	switch_site();
+
                             	$shows = get_posts( $args );
 
                             	// iterate through show list, building out the poster image links
@@ -179,6 +194,11 @@
 								?>
                         	</ul>
                         </div>
+
+                        <?php
+                        // We're near the end of the header...revert to current site, to prevent interfering with future queries
+                        revert_site();
+						?>
                         
 						<span class="top-social">
 							<a href="http://www.facebook.com/ticketsbroadway/" class="facebook-icon" target="_blank" ><img src="<?php echo get_template_directory_uri(); ?>/library/assets/icons/social/color/facebook.png" /></a>

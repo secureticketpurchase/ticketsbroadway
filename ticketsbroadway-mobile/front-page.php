@@ -10,6 +10,8 @@
                             <ul class="home-mobile-slider">
 							<?php 
 
+                            switch_site();
+
                             $slider = get_home_slider_alt();
                                 $i = 0;
                             
@@ -25,7 +27,7 @@
 							
 
 							<?php ++$i;
-                            endwhile; endif; 
+                            endwhile; endif;
                             ?>
                             </ul>
                             
@@ -67,6 +69,9 @@
                             
 						</div>
 
+                        <?php
+                        revert_site();
+                        ?>
 
 						<div id="beyond-buzz">
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/library/assets/mobile/beyond-the-buzz-star-header.png">

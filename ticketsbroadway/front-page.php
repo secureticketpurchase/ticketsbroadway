@@ -6,7 +6,10 @@
 
 						<div id="home-page-slider">
 
-							<?php 
+							<?php
+
+							// from this point forward to the HoH is content pulled from the main site
+							switch_site();
 
 							$slider_query = get_home_slider();
 
@@ -173,6 +176,19 @@
 									'no_found_rows'	=> true
 								);
 
+								// revert to current site for theme check
+								revert_site();
+
+								// check if city option is selected.  If so, use its "shows" post meta array to add that limit to the query
+                            	if ( MICRO_SHOWS != "" ) {
+                            		$args['post__in'] = theme_arr("shows");
+                            	}
+
+                            	// switch back to main site for next chunk
+                            	switch_site();
+
+                            	//printDat($args);
+
 								$seller_query = new WP_Query( $args );
 
 								/*echo "<pre>";
@@ -191,6 +207,9 @@
 
 								endwhile; endif;
 
+								// Everything from here is directly related to the current, rather than main, site
+								revert_site();
+
 								echo "</div>";
 							?>
 
@@ -203,6 +222,18 @@
 								$banner_url = wp_get_attachment_url( $theme_options['banner_id'] );
 
 								$banner_link = $theme_options['banner_link'];
+
+								if ( $banner_url == false ) {
+									// temporarily switch to main site, grab banner and link, then switch back over
+									switch_site();
+
+									$theme_options = get_option( "tb_theme_options" );
+									$banner_url = wp_get_attachment_url( $theme_options['banner_id'] );
+									$banner_link = $theme_options['banner_link'];
+
+									// switch back to current site for the rest
+									revert_site();
+								}
 							?>
 							<a href="<?php echo $banner_link; ?>"><img src="<?php echo $banner_url; ?>" style="width:100%;"/></a>
 						</div>
