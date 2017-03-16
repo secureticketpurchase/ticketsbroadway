@@ -52,7 +52,7 @@ function sendCalDataMobile() {
             var next = s != "no more" ? res[1] : null;
             $('#showtime-listings ul').append(s);
 
-            $('#add-more-link').attr("data-week", next);
+            $('#add-more-link').attr("data-week", next.date);
         }
 	} );
 };
