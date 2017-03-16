@@ -55,7 +55,7 @@
                                     <div class="runtime">
                                         <h4>Runtime</h4>
                                         <?php if( $duration = get_post_meta( $post->ID, "duration", true) ){
-                                                    $intermission = get_post_meta( $post->ID, "duration", true);
+                                                    $intermission = get_post_meta( $post->ID, "intermissions", true);
                                                     echo $duration . ' '. $intermission;
                                                 
                                             }else{
