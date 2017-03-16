@@ -118,6 +118,17 @@ $timeBegun = new DateTime();
 
 				$result = $wpdb->delete( $wpdb->prefix . 'performers', array( "id" => $id ) );
 
+				// see if more than 55 minutes have passed, break if so
+				// (intended to help mitigate dupes by only triggering this script one an hour)
+				$now = new DateTime();
+				$diff = $now->diff($timeBegun);
+
+				echo "<p>$diff->i</p>";
+
+				if ( $diff->i >= 55 ) {
+					break;
+				}
+
 				//$cntr++;
 
 				/*if ( $cntr > 24 ) {
