@@ -31,6 +31,12 @@ function get_filter_form($options){
             $month = $_POST['search_month']; // NOTE: allow for filtering over multiple months
         else
             $month = "";
+
+        global $theme_city;
+        if ( $theme_city != "" ) {
+            $cityID = $theme_city;
+        }
+
         ?>
         <input type="hidden" name="search_post_type" value="shows" /> <!-- // hidden 'products' value -->
         <input type="hidden" name="search_tosearch" value="<?php echo $toSearch; ?>" />
