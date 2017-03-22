@@ -401,7 +401,7 @@ get_header();
 								// build out and return the display
 								return new Handlebars.SafeString(
 									//day + "<br />" + month + " " + monthDay + ", " + year + "<br />" + hour + ":" + minute + " " + period
-									formattedDay + "<br />" + formattedDate + "<br />" + formattedTime
+									"<div>" + formattedDay + "</div><div>" + formattedDate + "</div><div>" + formattedTime + "</div>"
 								);
 							});
 							
@@ -435,19 +435,17 @@ get_header();
 						<script id="entry-template" type="text/x-handlebars-template">
 							<table id="events-results-table">
 								<tr id="header">
-									<td>Date & Time</td>
+									<td id="header-date">Date & Time</td>
 									<td class="event-column">Event</td>
-									<td class="location-column">Location</td>
 									<td></td>
 								</tr>
 								{{#each (numResults theResult 0)}}
 
 								<tr class="event-entry" >
 									<td class="date">{{formatDate Date}}</td>
-									<td class="show-title">{{Name}}</td>
-									<td class="location">
-										<span>{{Venue}}</span> <br />
-										{{City}}, {{StateProvince}}
+									<td class="event-location">
+										<div class="show-title">{{Name}}</div>
+										<div>{{Venue}} - {{City}}, {{StateProvince}}</div>
 									</td>
 									<td class="link"><a href="{{buildTicketURL ID}}" class="buy-tickets">Buy Tickets</a></td>
 								</tr>
