@@ -21,8 +21,8 @@
         width:100%;
         #events-results-table{
             tr#header{
-                    display:none;
-                }
+                display:none;
+            }
             td{
                 display:inline-block;
                 width: 33%;
@@ -33,7 +33,13 @@
                     margin-top: 40px;
                 }
             }
-            
+            td.date {
+                padding-left: 20px;
+
+                &:before {
+                    display: none;
+                }
+            }
         }
     }
 }
