@@ -21,7 +21,14 @@
 
 							<article id="<?php the_ID(); ?>" class="single" >
 								<h2><?php the_title(); ?></h2>
+								<?php
+								$video_meta = get_post_meta( get_the_ID(), 'brafton_video', true );
+								if ( $video_meta == "" ) {
+								?>
 								<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" rel="bookmark" class="thumbnail"><?php echo get_the_post_thumbnail( get_the_ID(), 'full' ); ?></a>
+								<?php
+								}
+								?>
 								<div class="article-header">
 									<time datetime="<?php echo date(DATE_W3C); ?>" pubdate ><?php the_time('F jS, Y'); ?></time> | <span class="category"> <?php echo $categories[0]->name; ?></span> | 
 									<span class="social-icons">
