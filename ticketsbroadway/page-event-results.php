@@ -394,14 +394,14 @@ get_header();
 							Handlebars.registerHelper( "formatDate", function( rawDate ) {
 								var date = new Date(rawDate);
 								
-								var formattedDay = dateFns.format( rawDate, "dddd" );
-								var formattedDate = dateFns.format( rawDate, "MMMM D, YYYY" );
+								var formattedDay = dateFns.format( rawDate, "ddd" );
+								var formattedDate = dateFns.format( rawDate, "MMM D" );
 								var formattedTime = dateFns.format( rawDate, "h:mm a" );
 
 								// build out and return the display
 								return new Handlebars.SafeString(
 									//day + "<br />" + month + " " + monthDay + ", " + year + "<br />" + hour + ":" + minute + " " + period
-									"<div>" + formattedDay + "</div><div>" + formattedDate + "</div><div>" + formattedTime + "</div>"
+									"<div class='day'>" + formattedDay + "</div><div>" + formattedDate + "</div><div>" + formattedTime + "</div>"
 								);
 							});
 							

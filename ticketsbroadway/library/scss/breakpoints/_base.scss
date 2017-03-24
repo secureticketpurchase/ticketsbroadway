@@ -929,14 +929,23 @@ article h1 {
 			td{
 				padding: 15px 5px;
 				&.date{
-					padding-left:35px;
-					position:relative;
-					&:before{
+					/*padding-left: 35px;*/
+					position: relative;
+					text-transform: uppercase;
+					text-align: center;
+					width: 13%;
+
+					/*&:before{
 						content:url('../assets/icons/date-icon.png');
 						position:absolute;
 						left:10px;
+					}*/
+
+					.day {
+						font-size: 22px;
+						color: $yellow;
+						font-weight: bold;
 					}
-					width: 20%;
 
 					div {
 						margin-bottom: 5px;
@@ -975,6 +984,8 @@ article h1 {
     				color: #222222;
     				background-color: #faa61a;
     				margin-top: 13px;
+    				margin-right: 15px;
+    				float: right;
 				}
 			}
 		}
