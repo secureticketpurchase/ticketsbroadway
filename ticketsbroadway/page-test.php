@@ -46,7 +46,9 @@ $timeBegun = new DateTime();
 
 				$exists = Show::exists( $id );
 
-				$newShows[] = $name;
+				if ( !$exists ) {
+					$newShows[] = $name;
+				}
 
 				/*if ( $exists ) {
 					echo "show $name exists, skipping this one";
