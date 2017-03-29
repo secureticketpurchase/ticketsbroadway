@@ -66,7 +66,7 @@ footer.footer{
 							siteNumber = '7';
 							Seatics.config.checkoutUrl = "https://secure.ticketsbroadway.net/checkout/mobile2/Checkout.aspx?brokerid="+brokerID+"&sitenumber="+siteNumber+userinformation;
 						}*/
-						Seatics.config.c3CheckoutDomain = "secure.ticketsbroadway.com";
+						Seatics.config.c3CheckoutDomain = "checkout.ticketsbroadway.com";
 		                Seatics.config.c3CurrencyCode = "USD";
 		                Seatics.config.useC3 = true;
 
