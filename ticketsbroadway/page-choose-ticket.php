@@ -60,12 +60,15 @@ footer.footer{
 						<script type="text/javascript">
 						var Seatics = Seatics || {};
 						Seatics.config = Seatics.config || {};
-						if(document.location.origin == 'https://ticketsbroadway.com'){
+						/*if(document.location.origin == 'https://ticketsbroadway.com'){
 							Seatics.config.checkoutUrl = "https://secure.ticketsbroadway.com/checkout/mobile2/Checkout.aspx?brokerid="+brokerID+"&sitenumber="+siteNumber+userinformation;
 						}else if(document.location.origin == 'https://ticketsbroadway.net'){
 							siteNumber = '7';
 							Seatics.config.checkoutUrl = "https://secure.ticketsbroadway.net/checkout/mobile2/Checkout.aspx?brokerid="+brokerID+"&sitenumber="+siteNumber+userinformation;
-						}
+						}*/
+						Seatics.config.c3CheckoutDomain = "secure.ticketsbroadway.com";
+		                Seatics.config.c3CurrencyCode = "USD";
+		                Seatics.config.useC3 = true;
 
 
 					</script>
