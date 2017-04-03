@@ -30,18 +30,25 @@
 
                 .buy-tickets {
                     padding: 8px 10px;
-                    margin-top: 50%;
                     margin-right: 0px;
                 }
             }
             td.date {
-                padding-left: 20px;
+                padding-left: 30px;
+                text-align: left;
 
                 &:before {
                     display: none;
                 }
             }
         }
+    }
+}
+
+#pagination-holder {
+    
+    div {
+        margin-bottom: 10px;
     }
 }
 
