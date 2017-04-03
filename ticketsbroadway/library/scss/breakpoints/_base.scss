@@ -1549,7 +1549,16 @@ ul#ui-id-1 {
 }
 
 #pagination-holder {
+	display: flex;
+
 	div {
 		cursor: pointer;
+		color: black;
+		background-color: $yellow;
+		font-weight: bold;
+		margin: 10px auto 0px auto;
+		padding: 5px;
+		border-radius: 19px;
+		border: 3px black solid;
 	}
 }
