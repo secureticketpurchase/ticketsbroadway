@@ -35,7 +35,7 @@
 						<div class="contact-block column">
 							<p class="footer-column-header">Contact Information</p>
 							<p class="footer-email"><a href="mailto:Info@ticketsbroadway.com">Info@ticketsbroadway.com</a></p>
-							<p class="footer-phone"><a href="tel:8447337469">1-844-2SEESHOW</a></p>
+							<p class="footer-phone"><a href="tel:8442733746">1-844-2SEESHOW</a></p>
 
 						</div>
 					</div>

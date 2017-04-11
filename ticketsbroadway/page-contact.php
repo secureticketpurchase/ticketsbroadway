@@ -35,8 +35,8 @@
 									<div class="contact-info">
 										<span class="phone-info">
 											Toll Free<br />
-											<a href="tel:8447337469"><span class="phone-number">1-844-SEESHOW</span></a><br />
-											<a href="tel:8447337469"><span class="phone-number">1-844-733-7469</span></a>
+											<a href="tel:8442733746"><span class="phone-number">1-844-2SEESHOW</span></a><br />
+											<a href="tel:8442733746"><span class="phone-number">1-844-273-3746</span></a>
 										</span>
 									</div>
 
