@@ -63,7 +63,7 @@
 						<?php get_search_form(); ?>
 
 						<div class="header-phone-container">
-							<div class="header-bubble"><span><a href="tel:8447337469">1-844-2SEESHOW</a></span><img src="<?php echo get_template_directory_uri(); ?>/library/assets/phone-number-hover.png" /></div>
+							<div class="header-bubble"><span><a href="tel:8442733746">1-844-2SEESHOW</a></span><img src="<?php echo get_template_directory_uri(); ?>/library/assets/phone-number-hover.png" /></div>
 							<img src="<?php echo get_template_directory_uri(); ?>/library/assets/icons/phone-speech-bubble.png" class="phone-btn" />
 						</div>
 
