@@ -28,15 +28,15 @@
 									<a href="">Visit our FAQ Page.</a>
 								</h3>
 								<div class="contact-sidebar-container">
-									<div class="call-us">
+									<a href="tel:8447337469" class="call-us">
 										<img src="<?php echo get_template_directory_uri(); ?>/library/assets/icons/small-phone-speech-bubble.png" />
 										<p>Call Us<p>
-									</div>
+									</a>
 									<div class="contact-info">
 										<span class="phone-info">
 											Toll Free<br />
-											<span class="phone-number">1-844-SEESHOW</span><br />
-											<span class="phone-number">1-844-733-7469</span>
+											<a href="tel:8447337469"><span class="phone-number">1-844-SEESHOW</span></a><br />
+											<a href="tel:8447337469"><span class="phone-number">1-844-733-7469</span></a>
 										</span>
 									</div>
 

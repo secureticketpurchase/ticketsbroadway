@@ -127,12 +127,14 @@ HEADER STYLES
 		position: absolute;
 		left: -230px;
 
-		span {
+		span a {
 			font-weight: bold;
 			font-size: 22px;
 			position: absolute;
 			top: 10px;
 			left: 17px;
+			color: black;
+			text-decoration: none;
 		}
 
 		img {
@@ -381,6 +383,11 @@ SIDEBARS & ASIDES
 		font-weight: 600;
 		font-size: 20px;
 		line-height: 25px;
+
+		a {
+			color: $yellow;
+			text-decoration: none;
+		}
 	}
 
 	p.contact-sidebar {
@@ -393,6 +400,8 @@ SIDEBARS & ASIDES
 		font-size: 20px;
 		position: relative;
 		left: -32px;
+		color: white;
+		text-decoration: none;
 
 		p {
 			position: relative;
@@ -722,6 +731,16 @@ mobile. Make sure to double check these!
 	.footer-email::before {
 		content: url(../assets/icons/envelope.png);
 		margin-right: 5px;
+	}
+
+	.footer-phone {
+
+		a {
+			color: white;
+			text-decoration: none;
+			position: relative;
+			top: -7px;
+		}
 	}
 
 	.footer-phone::before {
