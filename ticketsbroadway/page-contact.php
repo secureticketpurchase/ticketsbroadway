@@ -28,7 +28,7 @@
 									<a href="">Visit our FAQ Page.</a>
 								</h3>
 								<div class="contact-sidebar-container">
-									<a href="tel:8447337469" class="call-us">
+									<a href="tel:8442733746" class="call-us">
 										<img src="<?php echo get_template_directory_uri(); ?>/library/assets/icons/small-phone-speech-bubble.png" />
 										<p>Call Us<p>
 									</a>
