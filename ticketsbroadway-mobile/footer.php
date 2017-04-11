@@ -33,7 +33,7 @@
                                 <li><a>Contact</a></li>
                             </ul>
 							<p class="footer-email"><img src="<?php echo get_stylesheet_directory_uri(); ?>/library/assets/mobile/email.png"  /></p>
-							<p class="footer-phone"><a href="tel:8447337469"><img src="<?php echo get_stylesheet_directory_uri(); ?>/library/assets/mobile/phone.png"  /></a></p>
+							<p class="footer-phone"><a href="tel:8442733746"><img src="<?php echo get_stylesheet_directory_uri(); ?>/library/assets/mobile/phone.png"  /></a></p>
 
 						</div>
 					</div>
